@@ -37,10 +37,12 @@ namespace ConvertLanguage
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rr4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.rtxInput = new System.Windows.Forms.RichTextBox();
+            this.rtxOutput = new System.Windows.Forms.RichTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -48,7 +50,6 @@ namespace ConvertLanguage
             this.btnSave = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.rr4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -79,6 +80,7 @@ namespace ConvertLanguage
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.menuStrip1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.toolStrip1, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -137,6 +139,22 @@ namespace ConvertLanguage
             this.helloToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.helloToolStripMenuItem.Text = "Hello";
             // 
+            // rr4ToolStripMenuItem
+            // 
+            this.rr4ToolStripMenuItem.Name = "rr4ToolStripMenuItem";
+            this.rr4ToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
+            this.rr4ToolStripMenuItem.Text = "rr4";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1047, 29);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel3);
@@ -154,8 +172,8 @@ namespace ConvertLanguage
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel3.Controls.Add(this.richTextBox1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.richTextBox2, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.rtxInput, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.rtxOutput, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 0);
@@ -166,23 +184,24 @@ namespace ConvertLanguage
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1047, 515);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // richTextBox1
+            // rtxInput
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(465, 509);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.rtxInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtxInput.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxInput.Location = new System.Drawing.Point(3, 3);
+            this.rtxInput.Name = "rtxInput";
+            this.rtxInput.Size = new System.Drawing.Size(465, 509);
+            this.rtxInput.TabIndex = 0;
+            this.rtxInput.Text = "";
             // 
-            // richTextBox2
+            // rtxOutput
             // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(578, 3);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(466, 509);
-            this.richTextBox2.TabIndex = 1;
-            this.richTextBox2.Text = "";
+            this.rtxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtxOutput.Location = new System.Drawing.Point(578, 3);
+            this.rtxOutput.Name = "rtxOutput";
+            this.rtxOutput.Size = new System.Drawing.Size(466, 509);
+            this.rtxOutput.TabIndex = 1;
+            this.rtxOutput.Text = "";
             // 
             // flowLayoutPanel2
             // 
@@ -202,6 +221,7 @@ namespace ConvertLanguage
             this.button1.TabIndex = 6;
             this.button1.Text = "Convert";
             this.button1.UseVisualStyleBackColor = true;
+           
             // 
             // tableLayoutPanel4
             // 
@@ -243,12 +263,6 @@ namespace ConvertLanguage
             // 
             this.openFile.FileName = "openFileDialog1";
             // 
-            // rr4ToolStripMenuItem
-            // 
-            this.rr4ToolStripMenuItem.Name = "rr4ToolStripMenuItem";
-            this.rr4ToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
-            this.rr4ToolStripMenuItem.Text = "rr4";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -287,14 +301,15 @@ namespace ConvertLanguage
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.SaveFileDialog saveFile;
         private System.Windows.Forms.ToolStripMenuItem helloToolStripMenuItem;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox rtxInput;
+        private System.Windows.Forms.RichTextBox rtxOutput;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btn;
         private System.Windows.Forms.ToolStripMenuItem rr4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
 
