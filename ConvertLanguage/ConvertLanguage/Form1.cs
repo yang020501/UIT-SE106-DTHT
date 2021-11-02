@@ -17,6 +17,7 @@ namespace ConvertLanguage
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,24 +41,26 @@ namespace ConvertLanguage
         {
 
             text.Trim();
-            while (text.Contains("  "))
-                text = text.Replace("  "," ");
+           
             rtxInput.Text = text;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             saveFile.ShowDialog();
-            
+           
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConvert_Click(object sender, EventArgs e)
         {
             //string[] n = doRegex.doMain("Ham (a :R,b:     Z)kq: R*");
             //for (int i = 0; i < n.Length; i++)
             //{
             //    rtxOutput.Text += n[i];
             //}
+            CSharp tmp = new CSharp();
+            rtxOutput.Text = tmp.Result;
         }
     }
 }
