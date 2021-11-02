@@ -59,8 +59,9 @@ namespace ConvertLanguage
             //{
             //    rtxOutput.Text += n[i];
             //}
-            CSharp tmp = new CSharp();
-            rtxOutput.Text = tmp.Result;
+            CPp cp = new CPp();
+            cp.Result = Regex.Replace(cp.Result, @"\w:\w", "your result here");
+            rtxOutput.Text =cp.Result;
         }
     }
 }
