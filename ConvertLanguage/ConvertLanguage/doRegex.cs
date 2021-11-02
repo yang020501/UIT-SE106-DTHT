@@ -16,6 +16,53 @@ namespace ConvertLanguage
             txt = Regex.Replace(txt, @"\s+", "");
            
         }
+
+        // Hàm tách chuỗi post thường
+        public static string Tach_PostThuong(string post)
+        {
+            clearSpace(ref post);
+
+            for (int i = 0; i < post.Length; i++)
+            {
+                char s = post[i];
+                if (s == 't')
+                {
+                    post = post.Substring(i + 1, post.Length - i - 1).Trim();
+                    break;
+                }
+            }
+            Console.WriteLine(post);
+            Console.WriteLine("-------------------------------------");
+            int count = 0;
+            int indexk = 0;
+            string result = "";
+            for (int i = 0; i < post.Length - 2; i++)
+            {
+                char s = post[i];
+
+                if (s == '(')
+                {
+                    count++;
+                }
+
+                if (s == ')')
+                {
+                    count--;
+                }
+
+                if (count == 0 && post[i + 1] == '|' && post[i + 2] == '|')
+                {
+                    result += post.Substring(indexk, i + 3 - indexk) + "\n";
+                    indexk = i + 3;
+                }
+            }
+            result += post.Substring(indexk, post.Length - indexk);
+
+            Console.Write(result);
+
+            return result;
+        }
+
         // hàm cắt dòng dòng khai báo implicit
         public static string[] doMain(string txt) // txt là 1 chuỗi các loại trong Implicit
         {
