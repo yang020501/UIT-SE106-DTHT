@@ -38,6 +38,7 @@ namespace ConvertLanguage
 
         private void clearSpace(string text)
         {
+
             text.Trim();
             while (text.Contains("  "))
                 text = text.Replace("  "," ");
@@ -47,7 +48,16 @@ namespace ConvertLanguage
         private void btnSave_Click(object sender, EventArgs e)
         {
             saveFile.ShowDialog();
+            
         }
-       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //string[] n = doRegex.doMain("Ham (a :R,b:     Z)kq: R*");
+            //for (int i = 0; i < n.Length; i++)
+            //{
+            //    rtxOutput.Text += n[i];
+            //}
+        }
     }
 }
