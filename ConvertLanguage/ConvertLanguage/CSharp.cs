@@ -13,7 +13,7 @@ namespace ConvertLanguage
         public string Result { get => result; set => result = value; }
         public CSharp()
         {
-            var absolute_path = Path.Combine(@"D:\Tài liệu\Đặc tả hình thức\FormalSpe\ConvertLanguage\ConvertLanguage\formC#.txt", "..\\formC#.txt");            
+            var absolute_path = Path.Combine(@"D:\000-Work to do\Download\FormalSpe\ConvertLanguage\ConvertLanguage\formC#.txt", "..\\formC#.txt");            
 
             string path = Path.GetFullPath((new Uri(absolute_path)).LocalPath);
             StreamReader read = new StreamReader(path);
