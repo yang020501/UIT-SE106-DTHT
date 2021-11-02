@@ -9,9 +9,12 @@ namespace ConvertLanguage
 {
     public static class doRegex
     {
+        // xoá khoảng trắng
         public static void clearSpace(ref string  txt)
         {
+            txt.Trim();
             txt = Regex.Replace(txt, @"\s+", "");
+           
         }
         // hàm cắt dòng dòng khai báo implicit
         public static string[] doMain(string txt) // txt là 1 chuỗi các loại trong Implicit
@@ -37,6 +40,10 @@ namespace ConvertLanguage
             }
             
             return result;
+        }
+        public static string[] doPre(string txt)
+        {
+            return new string[4];
         }
     }
 }
