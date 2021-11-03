@@ -199,6 +199,7 @@ namespace ConvertLanguage
             this.rtxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtxOutput.Location = new System.Drawing.Point(578, 3);
             this.rtxOutput.Name = "rtxOutput";
+            this.rtxOutput.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
             this.rtxOutput.Size = new System.Drawing.Size(466, 509);
             this.rtxOutput.TabIndex = 1;
             this.rtxOutput.Text = "";

@@ -25,19 +25,6 @@ namespace ConvertLanguage
             }
             return s;
         }
-
-
-        // hàm cắt dòng dòng khai báo implicit
-        public static string[] doMain(string txt) // txt là 1 chuỗi các loại trong Implicit
-
-        {
-            string s = "\n";
-            for (int i=0;i<x;i++)
-            {
-                s+="\t";
-            }
-            return s;
-        }
         // hàm cắt dòng dòng khai báo implicit
         public static string[] doMain(string txt) // txt là 1 chuỗi các loại khai báo trong Implicit
         {
