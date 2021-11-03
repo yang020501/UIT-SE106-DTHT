@@ -9,16 +9,15 @@ namespace ConvertLanguage
 {
     class Post
     {
-        public static void clearSpace(ref string txt)
-        {
-            txt.Trim();
-            txt = Regex.Replace(txt, @"\s+", "");
-        }
+
 
         //Hàm tách chuỗi của post condition thường
         public static string Tach_PostThuong(string post)
         {
-            clearSpace(ref post);
+
+            doRegex.clearSpace(ref post);
+
+            
 
             for (int i = 0; i < post.Length; i++)
             {

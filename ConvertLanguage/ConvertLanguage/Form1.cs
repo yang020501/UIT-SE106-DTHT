@@ -17,14 +17,26 @@ namespace ConvertLanguage
         public Form1()
         {
             InitializeComponent();
-            
+         
         }
-
+       
+        private void btnCsharp_Click(object sender, EventArgs e)
+        {
+            ConvertCSharp();
+        }
+        private void btnCpp_Click(object sender, EventArgs e)
+        {
+            ConvertCPP();
+        }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            rtxInput.Clear();
+            rtxOutput.Clear();
+        }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -35,30 +47,30 @@ namespace ConvertLanguage
                 read.Close();               
             }
             
-        }
-
-       
-
+        }       
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveFile.ShowDialog();
-           
+            saveFile.ShowDialog();          
 
-        }
+        }       
 
-        private void btnConvert_Click(object sender, EventArgs e)
+        private void ConvertCPP()
         {
-            
-            string main = doRegex.cutPost(rtxInput.Text);
-            rtxOutput.Text = main;
-
-            string[] a = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
-            
-            rtxOutput.Text += "\n" +a[0];
-            rtxOutput.Text += "\n" + a[1];
-            rtxOutput.Text += "\n" + a[2];
-
-
+            string result;
+            CPp file = new CPp();
+            result = "";
+            rtxOutput.Text = Regex.Replace(file.Result, @"x:R", result);
         }
+
+        private void ConvertCSharp()
+        {
+            string result;
+            CSharp file = new CSharp();
+            result = file.formNhap() + file.formXuat() + file.formCheck(doRegex.cutPre(rtxInput.Text)) + file.formFunction() + file.formMain();
+
+            rtxOutput.Text = Regex.Replace(file.Result, @"x:R",result );
+        }
+
+        
     }
 }

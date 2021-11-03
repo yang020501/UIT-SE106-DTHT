@@ -37,23 +37,24 @@ namespace ConvertLanguage
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rr4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btniconOpen = new System.Windows.Forms.ToolStripButton();
+            this.btniconSave = new System.Windows.Forms.ToolStripButton();
+            this.btniconNew = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rtxInput = new System.Windows.Forms.RichTextBox();
             this.rtxOutput = new System.Windows.Forms.RichTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnConvert = new System.Windows.Forms.Button();
+            this.btnCpp = new System.Windows.Forms.Button();
+            this.btnCsharp = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -99,9 +100,7 @@ namespace ConvertLanguage
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helloToolStripMenuItem,
-            this.rr4ToolStripMenuItem});
+            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1047, 28);
@@ -138,31 +137,75 @@ namespace ConvertLanguage
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // helloToolStripMenuItem
-            // 
-            this.helloToolStripMenuItem.Name = "helloToolStripMenuItem";
-            this.helloToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
-            this.helloToolStripMenuItem.Text = "Hello";
-            // 
-            // rr4ToolStripMenuItem
-            // 
-            this.rr4ToolStripMenuItem.Name = "rr4ToolStripMenuItem";
-            this.rr4ToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
-            this.rr4ToolStripMenuItem.Text = "rr4";
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
+            this.btniconOpen,
+            this.btniconSave,
+            this.btniconNew,
+            this.toolStripLabel1,
+            this.toolStripLabel2,
+            this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1047, 29);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btniconOpen
+            // 
+            this.btniconOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btniconOpen.Image = global::ConvertLanguage.Properties.Resources._473670;
+            this.btniconOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btniconOpen.Name = "btniconOpen";
+            this.btniconOpen.Size = new System.Drawing.Size(29, 26);
+            this.btniconOpen.Text = "toolStripButton2";
+            this.btniconOpen.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // btniconSave
+            // 
+            this.btniconSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btniconSave.Image = global::ConvertLanguage.Properties.Resources.download;
+            this.btniconSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btniconSave.Name = "btniconSave";
+            this.btniconSave.Size = new System.Drawing.Size(29, 26);
+            this.btniconSave.Text = "toolStripButton3";
+            this.btniconSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btniconNew
+            // 
+            this.btniconNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btniconNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btniconNew.Image = global::ConvertLanguage.Properties.Resources.file_empty;
+            this.btniconNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btniconNew.Name = "btniconNew";
+            this.btniconNew.Size = new System.Drawing.Size(29, 26);
+            this.btniconNew.Text = "toolStripButton1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.ActiveLinkColor = System.Drawing.SystemColors.Control;
+            this.toolStripLabel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(27, 26);
+            this.toolStripLabel1.Text = "C#";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(38, 26);
+            this.toolStripLabel2.Text = "C++";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 26);
+            this.toolStripButton2.Text = "toolStripButton2";
             // 
             // flowLayoutPanel1
             // 
@@ -199,7 +242,7 @@ namespace ConvertLanguage
             this.rtxInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxInput.Location = new System.Drawing.Point(3, 3);
             this.rtxInput.Name = "rtxInput";
-            this.rtxInput.Size = new System.Drawing.Size(324, 509);
+            this.rtxInput.Size = new System.Drawing.Size(412, 509);
             this.rtxInput.TabIndex = 0;
             this.rtxInput.Text = "";
             this.rtxInput.WordWrap = false;
@@ -208,32 +251,52 @@ namespace ConvertLanguage
             // 
             this.rtxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtxOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxOutput.Location = new System.Drawing.Point(443, 3);
+            this.rtxOutput.Location = new System.Drawing.Point(525, 3);
             this.rtxOutput.Name = "rtxOutput";
-            this.rtxOutput.Size = new System.Drawing.Size(601, 509);
+            this.rtxOutput.Size = new System.Drawing.Size(519, 509);
             this.rtxOutput.TabIndex = 1;
             this.rtxOutput.Text = "";
             this.rtxOutput.WordWrap = false;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.btnConvert);
+            this.flowLayoutPanel2.Controls.Add(this.btnCpp);
+            this.flowLayoutPanel2.Controls.Add(this.btnCsharp);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(333, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(421, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(104, 509);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(98, 509);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
-            // btnConvert
+            // btnCpp
             // 
-            this.btnConvert.Location = new System.Drawing.Point(3, 240);
-            this.btnConvert.Margin = new System.Windows.Forms.Padding(3, 240, 3, 3);
-            this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(95, 29);
-            this.btnConvert.TabIndex = 6;
-            this.btnConvert.Text = "Convert";
-            this.btnConvert.UseVisualStyleBackColor = true;
-            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
+            this.btnCpp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCpp.BackgroundImage = global::ConvertLanguage.Properties.Resources.C__;
+            this.btnCpp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCpp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCpp.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnCpp.Location = new System.Drawing.Point(12, 180);
+            this.btnCpp.Margin = new System.Windows.Forms.Padding(12, 180, 3, 3);
+            this.btnCpp.Name = "btnCpp";
+            this.btnCpp.Size = new System.Drawing.Size(75, 58);
+            this.btnCpp.TabIndex = 10;
+            this.btnCpp.UseVisualStyleBackColor = false;
+            this.btnCpp.Click += new System.EventHandler(this.btnCpp_Click);
+            // 
+            // btnCsharp
+            // 
+            this.btnCsharp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCsharp.BackgroundImage = global::ConvertLanguage.Properties.Resources.C_;
+            this.btnCsharp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCsharp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCsharp.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnCsharp.Location = new System.Drawing.Point(12, 244);
+            this.btnCsharp.Margin = new System.Windows.Forms.Padding(12, 3, 3, 3);
+            this.btnCsharp.Name = "btnCsharp";
+            this.btnCsharp.Size = new System.Drawing.Size(75, 58);
+            this.btnCsharp.TabIndex = 9;
+            this.btnCsharp.UseVisualStyleBackColor = false;
+            this.btnCsharp.Click += new System.EventHandler(this.btnCsharp_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -241,8 +304,7 @@ namespace ConvertLanguage
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.btn, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnClear, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 515);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -252,55 +314,19 @@ namespace ConvertLanguage
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1047, 35);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
-            // btn
+            // btnClear
             // 
-            this.btn.Location = new System.Drawing.Point(3, 3);
-            this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(95, 29);
-            this.btn.TabIndex = 3;
-            this.btn.Text = "Clear";
-            this.btn.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(949, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(95, 29);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnClear.Location = new System.Drawing.Point(3, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(95, 29);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // openFile
             // 
             this.openFile.FileName = "openFileDialog1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(29, 26);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 26);
-            this.toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 26);
-            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // Form1
             // 
@@ -341,19 +367,20 @@ namespace ConvertLanguage
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.SaveFileDialog saveFile;
-        private System.Windows.Forms.ToolStripMenuItem helloToolStripMenuItem;
         private System.Windows.Forms.RichTextBox rtxInput;
         private System.Windows.Forms.RichTextBox rtxOutput;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btn;
-        private System.Windows.Forms.ToolStripMenuItem rr4ToolStripMenuItem;
+        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btniconOpen;
+        private System.Windows.Forms.ToolStripButton btniconSave;
+        private System.Windows.Forms.Button btnCsharp;
+        private System.Windows.Forms.Button btnCpp;
+        private System.Windows.Forms.ToolStripButton btniconNew;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }
 
