@@ -27,23 +27,17 @@ namespace ConvertLanguage
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             if(openFile.ShowDialog() == DialogResult.OK)
             {
                 StreamReader read = new StreamReader(openFile.FileName);
-                rtxInput.Text = read.ReadToEnd();
-                read.Close();
-                clearSpace(rtxInput.Text);
+                rtxInput.Text = read.ReadToEnd().Trim();               
+                read.Close();               
             }
             
         }
 
-        private void clearSpace(string text)
-        {
-
-            text.Trim();
-           
-            rtxInput.Text = text;
-        }
+       
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -54,16 +48,17 @@ namespace ConvertLanguage
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            //string[] n = doRegex.doMain("Ham (a :R,b:     Z)kq: R*");
-            //for (int i = 0; i < n.Length; i++)
-            //{
-            //    rtxOutput.Text += n[i];
-            //}
-
-            CSharp cp = new CSharp();
-            cp.Result = Regex.Replace(cp.Result, @"\w:\w", cp.formMain());
             
-            rtxOutput.Text =cp.Result;
+            string main = doRegex.cutPost(rtxInput.Text);
+            rtxOutput.Text = main;
+
+            string[] a = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
+            
+            rtxOutput.Text += "\n" +a[0];
+            rtxOutput.Text += "\n" + a[1];
+            rtxOutput.Text += "\n" + a[2];
+
+
         }
     }
 }
