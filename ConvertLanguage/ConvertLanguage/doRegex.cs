@@ -16,7 +16,11 @@ namespace ConvertLanguage
             txt = Regex.Replace(txt, @"\s+", "");
            
         }
-        public static string tab(int x)
+
+
+        // hàm cắt dòng dòng khai báo implicit
+        public static string[] doMain(string txt) // txt là 1 chuỗi các loại trong Implicit
+
         {
             string s = "\n";
             for (int i=0;i<x;i++)
