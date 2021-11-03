@@ -16,6 +16,15 @@ namespace ConvertLanguage
             txt = Regex.Replace(txt, @"\s+", "");
            
         }
+        public static  string tab(int x)
+        {
+            string s = "\n";
+            for (int i=0;i<x;i++)
+            {
+                s+="\t";
+            }
+            return s;
+        }
 
 
         // hàm cắt dòng dòng khai báo implicit
