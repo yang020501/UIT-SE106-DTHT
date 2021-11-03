@@ -51,7 +51,7 @@ namespace ConvertLanguage
                 result[i] = Pre[i].Value.ToString(); 
             }
 
-            return new string[4];
+            return result;
         }
     }
 }
