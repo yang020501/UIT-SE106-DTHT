@@ -9,12 +9,15 @@ namespace ConvertLanguage
 {
     class Post
     {
-        
+
 
         //Hàm tách chuỗi của post condition thường
         public static string Tach_PostThuong(string post)
         {
+
             doRegex.clearSpace(ref post);
+
+            
 
             for (int i = 0; i < post.Length; i++)
             {
