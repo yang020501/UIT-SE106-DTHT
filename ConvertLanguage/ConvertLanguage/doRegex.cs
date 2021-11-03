@@ -16,33 +16,41 @@ namespace ConvertLanguage
             txt = Regex.Replace(txt, @"\s+", "");
            
         }
-        // hàm cắt dòng dòng khai báo implicit
-        public static string[] doMain(string txt) // txt là 1 chuỗi các loại trong Implicit
+        public static string tab(int x)
         {
-            string name;
-            doRegex.clearSpace(ref txt); // xoá space
-            MatchCollection c = Regex.Matches(txt, @"(?<name>(\w)+|\S)"); // cắt tên hàm
-            MatchCollection d = Regex.Matches(txt, @"(?<type>(\w+:((\w\*|\w))))"); // cắt các biến 
-            name = c[0].Groups["name"].ToString(); // tên chỉ 1 nên kh cần duyệt
-            string[] type = new string[d.Count];
-            for (int i = 0; i < d.Count; i++)
+            string s = "\n";
+            for (int i=0;i<x;i++)
             {
-                type[i] = d[i].Value.ToString(); // biến có nhiều thằng 
+                s+="\t";
             }
-            string[] result = new string[1 + type.Length];
-            
-            for (int i=0;i<result.Length;i++)
+            return s;
+        }
+        // hàm cắt dòng dòng khai báo implicit
+        public static string[] doMain(string txt) // txt là 1 chuỗi các loại khai báo trong Implicit
+        {
+            doRegex.clearSpace(ref txt); // xoá space
+            MatchCollection Name = Regex.Matches(txt, @"(?<name>(\w)+|\S)"); // cắt tên hàm
+            MatchCollection Type = Regex.Matches(txt, @"(?<type>(\w+:((\w\*|\w))))"); // cắt các biến 
+            string[] result = new string[1 + Type.Count];
+            for (int i = 0; i < Type.Count; i++)
             {
                 if (i == 0)
-                    result[i] = name;
+                    result[i] = Name[0].Groups["name"].ToString();
                 else
-                    result[i] = type[i - 1];
+                    result[i] = Type[i - 1].Value.ToString();
             }
-            
             return result;
+
         }
-        public static string[] doPre(string txt)
+        public static string[] doPre(string txt) // txt là một chuỗi Pre
         {
+            MatchCollection Pre = Regex.Matches(txt, @"(?<type>((\w)+(\W)+(\w)+)|\W|(\W)+)");
+            string[] result = new string[Pre.Count];
+            for (int i = 0; i < Pre.Count; i++)
+            {
+                result[i] = Pre[i].Value.ToString(); 
+            }
+
             return new string[4];
         }
     }
