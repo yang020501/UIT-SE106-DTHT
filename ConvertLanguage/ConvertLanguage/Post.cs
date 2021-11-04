@@ -58,7 +58,7 @@ namespace ConvertLanguage
         //Hàm tách chuỗi của post condition có chứa array
         public string Tach_PostArray(string post)
         {         
-            clearSpace(ref post);
+            doRegex.clearSpace(ref post);
 
             for (int i = 0; i < post.Length; i++)
             {
