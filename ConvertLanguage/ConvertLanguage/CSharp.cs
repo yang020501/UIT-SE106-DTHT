@@ -17,7 +17,7 @@ namespace ConvertLanguage
         public CSharp()
         {
             result += "using System;\n" +
-                  "\nnamespace FormalSpecification\n{\n" +
+                  "\nnamespace FormalSpe\n{\n" +
                   "\tpublic class Program\n\t{\n\t\tx:R\n\t}\n}";
         }
         public string formNhap()
