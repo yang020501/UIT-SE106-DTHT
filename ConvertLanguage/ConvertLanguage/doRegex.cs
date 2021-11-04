@@ -40,7 +40,7 @@ namespace ConvertLanguage
 
                 result[i] = Type[i - 1].Value; // or có thể tạo gr type nhưng kết quả ý chang
             }
-            return result;
+            return result; // trả về kiểu mảng chuỗi với phần tử đầu là name và cuối là result giữa là các biến
 
         }
         // hàm cắt dòng main (khai báo)
@@ -64,6 +64,29 @@ namespace ConvertLanguage
             clearSpace(ref txt);
             MatchCollection post = Regex.Matches(txt, @"post(.+)");
             return txt = post[0].Groups[1].Value; // do match có trùng post nên lấy group khi chạy regextester.exe
+        }
+        public static string replaceType(string s)
+        {
+            if (s == "char*")
+                return "string";
+            else if (s == "R")
+                return "float";
+            else if (s == "Z" || s == "N")
+                return "int";
+            else if (s == "B")
+                return "bool";
+            else if (s == "R*")
+                return "float[]";
+            else if (s == "Z*" || s == "N*")
+                return "int[]";
+            return "";
+        }
+        public static string Arr(string s)
+        {
+            if (s == "float[]")
+                return "float";
+            else
+                return "int";
         }
 
         //public static string[] doPre(string txt) // txt là một chuỗi Pre

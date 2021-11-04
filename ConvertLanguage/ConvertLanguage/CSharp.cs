@@ -24,14 +24,14 @@ namespace ConvertLanguage
         {
             string result = "public void Nhap_name(reftype)"+
                 doRegex.tab(2) + "{" +
-                doRegex.tab(3) + "x:r" +
+                doRegex.tab(3) + "nhaphere" +
                 doRegex.tab(2) + "}" +
                 doRegex.tab(2);
             return result;
         }
         public string formXuat()
         {
-            string result = "public void Xuat_name(resulttype result)" +
+            string result = "public void Xuat_name(resultType result)" +
                 doRegex.tab(2) + "{" +
                 doRegex.tab(3) + "Console.WriteLine(\"Ket qua la: \" + result);" +
                 doRegex.tab(2) + "}" +
@@ -54,9 +54,9 @@ namespace ConvertLanguage
         }
         public string formFunction()
         {
-            string result = "public resulttype name(type)" +
+            string result = "public resultType name(type)" +
                doRegex.tab(2) + "{" +
-               doRegex.tab(3) + "resulttype result = resulttypevalue;" +
+               doRegex.tab(3) + "resultType result = rstValue;" +
                doRegex.tab(3) + "post" +
                doRegex.tab(3) + "return result;" +
                doRegex.tab(2) + "}" +
@@ -68,12 +68,12 @@ namespace ConvertLanguage
         {
             string result = "public static void Main(string[] args)"+
               doRegex.tab(2) + "{"+
-              doRegex.tab(3) + "typevalue" +
-              doRegex.tab(3) + "resulttype result = typevalue;" +
-              doRegex.tab(3) + "Nhap_name(nonreftype);" +
-              doRegex.tab(3) + "if(Check_name(nontype) == 1)" +
+              doRegex.tab(3) + "intro" +
+              doRegex.tab(3) + "resultType result = rstValue;" +
+              doRegex.tab(3) + "Nhap_name(nonrefType);" +
+              doRegex.tab(3) + "if(Check_name(nonType) == 1)" +
               doRegex.tab(3) + "{" +
-              doRegex.tab(4) + "result = name(nontype);" +
+              doRegex.tab(4) + "result = name(nonType);" +
               doRegex.tab(4) + "Xuat_name(result);" +
               doRegex.tab(3) + "}" +
               doRegex.tab(3) + "else" +             
