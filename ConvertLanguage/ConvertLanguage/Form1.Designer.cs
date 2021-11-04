@@ -187,6 +187,7 @@ namespace ConvertLanguage
             this.btniconNew.Name = "btniconNew";
             this.btniconNew.Size = new System.Drawing.Size(29, 26);
             this.btniconNew.Text = "New";
+            this.btniconNew.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // toolStripLabel1
             // 
@@ -310,8 +311,8 @@ namespace ConvertLanguage
             // 
             this.textBox2.Location = new System.Drawing.Point(1, 308);
             this.textBox2.Margin = new System.Windows.Forms.Padding(1, 3, 3, 3);
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(99, 22);
             this.textBox2.TabIndex = 11;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -359,6 +360,7 @@ namespace ConvertLanguage
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // textBox3
             // 
@@ -367,7 +369,6 @@ namespace ConvertLanguage
             this.textBox3.Location = new System.Drawing.Point(525, 3);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(513, 23);
             this.textBox3.TabIndex = 6;
             // 

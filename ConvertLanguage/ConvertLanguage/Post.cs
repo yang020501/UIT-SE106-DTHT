@@ -12,7 +12,7 @@ namespace ConvertLanguage
 
 
         //Hàm tách chuỗi của post condition thường
-        public static string Tach_PostThuong(string post)
+        public string Tach_PostThuong(string post)
         {
 
             doRegex.clearSpace(ref post);
@@ -55,6 +55,49 @@ namespace ConvertLanguage
             return result;
         }
 
+        //Hàm tách chuỗi của post condition có chứa array
+        public string Tach_PostArray(string post)
+        {         
+            doRegex.clearSpace(ref post);
+
+            for (int i = 0; i < post.Length; i++)
+            {
+                char s = post[i];
+                if (s == 't')
+                {
+                    post = post.Substring(i + 1, post.Length - i - 1).Trim();
+                    break;
+                }
+            }
+
+            for (int i = 0; i < post.Length; i++)
+            {
+                char s = post[i];
+                if (s == '=')
+                {
+                    post = post.Substring(i + 1, post.Length - i - 1);
+                    break;
+                }
+            }
+
+            post = post.Substring(1, post.Length - 2);
+           
+            string result = "";
+            int indext = 0;
+
+            for (int i = 0; i < post.Length; i++)
+            {
+                if (post[i] == '.' && post[i - 1] != '.' && post[i + 1] != '.')
+                {
+                    result += post.Substring(indext, i - indext + 1) + "\n";
+                    indext = i + 1;
+                }
+            }
+
+            result += post.Substring(indext, post.Length - indext);
+
+            return result;
+        }
 
     }
 }
