@@ -43,7 +43,7 @@ namespace ConvertLanguage
             this.btniconNew = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btniconBuild = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rtxInput = new System.Windows.Forms.RichTextBox();
@@ -51,8 +51,11 @@ namespace ConvertLanguage
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCpp = new System.Windows.Forms.Button();
             this.btnCsharp = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnClear = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
@@ -63,6 +66,7 @@ namespace ConvertLanguage
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -147,7 +151,7 @@ namespace ConvertLanguage
             this.btniconNew,
             this.toolStripLabel1,
             this.toolStripLabel2,
-            this.toolStripButton2});
+            this.btniconBuild});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1047, 29);
@@ -157,32 +161,32 @@ namespace ConvertLanguage
             // btniconOpen
             // 
             this.btniconOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btniconOpen.Image = global::ConvertLanguage.Properties.Resources._473670;
+            this.btniconOpen.Image = ((System.Drawing.Image)(resources.GetObject("btniconOpen.Image")));
             this.btniconOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btniconOpen.Name = "btniconOpen";
             this.btniconOpen.Size = new System.Drawing.Size(29, 26);
-            this.btniconOpen.Text = "toolStripButton2";
+            this.btniconOpen.Text = "Open";
             this.btniconOpen.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // btniconSave
             // 
             this.btniconSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btniconSave.Image = global::ConvertLanguage.Properties.Resources.download;
+            this.btniconSave.Image = ((System.Drawing.Image)(resources.GetObject("btniconSave.Image")));
             this.btniconSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btniconSave.Name = "btniconSave";
             this.btniconSave.Size = new System.Drawing.Size(29, 26);
-            this.btniconSave.Text = "toolStripButton3";
+            this.btniconSave.Text = "Save";
             this.btniconSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btniconNew
             // 
             this.btniconNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btniconNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btniconNew.Image = global::ConvertLanguage.Properties.Resources.file_empty;
+            this.btniconNew.Image = ((System.Drawing.Image)(resources.GetObject("btniconNew.Image")));
             this.btniconNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btniconNew.Name = "btniconNew";
             this.btniconNew.Size = new System.Drawing.Size(29, 26);
-            this.btniconNew.Text = "toolStripButton1";
+            this.btniconNew.Text = "New";
             // 
             // toolStripLabel1
             // 
@@ -198,14 +202,17 @@ namespace ConvertLanguage
             this.toolStripLabel2.Size = new System.Drawing.Size(38, 26);
             this.toolStripLabel2.Text = "C++";
             // 
-            // toolStripButton2
+            // btniconBuild
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 26);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.btniconBuild.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btniconBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btniconBuild.Image = ((System.Drawing.Image)(resources.GetObject("btniconBuild.Image")));
+            this.btniconBuild.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btniconBuild.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btniconBuild.Name = "btniconBuild";
+            this.btniconBuild.Size = new System.Drawing.Size(29, 26);
+            this.btniconBuild.Text = "Build";
+            this.btniconBuild.Click += new System.EventHandler(this.btniconBuild_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -262,6 +269,7 @@ namespace ConvertLanguage
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnCpp);
             this.flowLayoutPanel2.Controls.Add(this.btnCsharp);
+            this.flowLayoutPanel2.Controls.Add(this.textBox2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(421, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -271,7 +279,7 @@ namespace ConvertLanguage
             // btnCpp
             // 
             this.btnCpp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCpp.BackgroundImage = global::ConvertLanguage.Properties.Resources.C__;
+            this.btnCpp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCpp.BackgroundImage")));
             this.btnCpp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCpp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCpp.ForeColor = System.Drawing.Color.OrangeRed;
@@ -286,7 +294,7 @@ namespace ConvertLanguage
             // btnCsharp
             // 
             this.btnCsharp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCsharp.BackgroundImage = global::ConvertLanguage.Properties.Resources.C_;
+            this.btnCsharp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCsharp.BackgroundImage")));
             this.btnCsharp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCsharp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCsharp.ForeColor = System.Drawing.Color.OrangeRed;
@@ -298,13 +306,23 @@ namespace ConvertLanguage
             this.btnCsharp.UseVisualStyleBackColor = false;
             this.btnCsharp.Click += new System.EventHandler(this.btnCsharp_Click);
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1, 308);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(1, 3, 3, 3);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(99, 22);
+            this.textBox2.TabIndex = 11;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.btnClear, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 515);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -314,15 +332,44 @@ namespace ConvertLanguage
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1047, 35);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.43132F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.56869F));
+            this.tableLayoutPanel5.Controls.Add(this.btnClear, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.textBox3, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1041, 29);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(3, 3);
+            this.btnClear.AutoSize = true;
+            this.btnClear.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClear.Location = new System.Drawing.Point(3, 0);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(95, 29);
-            this.btnClear.TabIndex = 3;
+            this.btnClear.Size = new System.Drawing.Size(113, 26);
+            this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textBox3.ForeColor = System.Drawing.Color.Red;
+            this.textBox3.Location = new System.Drawing.Point(525, 3);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(513, 23);
+            this.textBox3.TabIndex = 6;
             // 
             // openFile
             // 
@@ -349,7 +396,10 @@ namespace ConvertLanguage
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -371,16 +421,19 @@ namespace ConvertLanguage
         private System.Windows.Forms.RichTextBox rtxOutput;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnCsharp;
+        private System.Windows.Forms.Button btnCpp;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btniconOpen;
         private System.Windows.Forms.ToolStripButton btniconSave;
-        private System.Windows.Forms.Button btnCsharp;
-        private System.Windows.Forms.Button btnCpp;
         private System.Windows.Forms.ToolStripButton btniconNew;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btniconBuild;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,7 +22,40 @@ namespace ConvertLanguage
             InitializeComponent();
          
         }
-       
+        private void btniconBuild_Click(object sender, EventArgs e)
+        {
+
+            CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+            ICodeCompiler icc = codeProvider.CreateCompiler();
+            string Output =  "Application.exe";
+            textBox2.Text = "";
+            CompilerParameters parameters = new CompilerParameters();
+            parameters.GenerateExecutable = true;
+            parameters.OutputAssembly = Output;
+            CompilerResults results = icc.CompileAssemblyFromSource(parameters,rtxOutput.Text);
+            if (results.Errors.Count > 0)
+            {
+                textBox2.ForeColor = Color.Red;
+                textBox2.Text = "Error!";
+                foreach (CompilerError CompErr in results.Errors)
+                {
+                   textBox3.Text = textBox3.Text +
+                                "Line number " + CompErr.Line +
+                                ", Error Number: " + CompErr.ErrorNumber +
+                                ", '" + CompErr.ErrorText + ";" +
+                                Environment.NewLine + Environment.NewLine;
+                }
+            }
+            else
+            {
+                
+                textBox2.ForeColor = Color.Blue;
+                textBox2.Text = "Success!";
+              
+                Process.Start(Output);
+            }
+            
+        }
         private void btnCsharp_Click(object sender, EventArgs e)
         {
             ConvertCSharp();
@@ -185,9 +221,9 @@ namespace ConvertLanguage
                         result += "Console.Write(\"Moi nhap so phan tu: \");" + 
                                 doRegex.tab(3)+"n = " + "type.Parse(Console.ReadLine());"+
                                 doRegex.tab(3) + item.Name+" = new " + doRegex.Arr(item.Type)+"[n];";
-                        result += doRegex.tab(3) + "for (int i = 0; i < "+item.Name+".Lenght; i++)" +
+                        result += doRegex.tab(3) + "for (int i = 0; i < n; i++)" +
                                 doRegex.tab(3) + "{" +
-                                doRegex.tab(4) + "Console.Write(\"Nhap phan tu thu {0}: \",i);" +
+                                doRegex.tab(4) + "Console.Write(\"Nhap phan tu thu {0}: \",i+1);" +
                                 doRegex.tab(4) + item.Name + "[i] = " + doRegex.Arr(item.Type)+ ".Parse(Console.ReadLine());" +
                                 doRegex.tab(3) + "}";
                         result = Regex.Replace(result, @"type", new Var(tmp[tmp.Length - 2]).Type);
@@ -210,5 +246,7 @@ namespace ConvertLanguage
         {
             return doRegex.doMain(doRegex.cutMain(rtxInput.Text))[0]; 
         }
+
+      
     }
 }

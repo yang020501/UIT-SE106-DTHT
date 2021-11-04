@@ -87,9 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\473670.png" />
-    <None Include="Resources\images.png" />
     <None Include="Resources\C#.png" />
     <None Include="Resources\C++.png" />
+    <None Include="Resources\download %281%29.png" />
     <Content Include="Resources\download.png" />
     <Content Include="Resources\file-empty.png" />
   </ItemGroup>

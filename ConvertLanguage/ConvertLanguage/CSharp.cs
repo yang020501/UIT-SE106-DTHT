@@ -14,8 +14,8 @@ namespace ConvertLanguage
         public string Result { get => result; set => result = value; }
         public CSharp()
         {
-            result += "using System\n" +
-                  "namespace FormalSpecification\n{\n" +
+            result += "using System;\n" +
+                  "\nnamespace FormalSpecification\n{\n" +
                   "\tpublic class Program\n\t{\n\t\tx:R\n\t}\n}";
         }
         public string formNhap()
@@ -68,11 +68,12 @@ namespace ConvertLanguage
               doRegex.tab(2) + "{"+
               doRegex.tab(3) + "intro" +
               doRegex.tab(3) + "resultType result = rstValue;" +
-              doRegex.tab(3) + "Nhap_name(nonrefType);" +
-              doRegex.tab(3) + "if(Check_name(nonType) == 1)" +
+              doRegex.tab(3) + "Program p = new Program();" +
+              doRegex.tab(3) + "p.Nhap_name(nonrefType);" +
+              doRegex.tab(3) + "if(p.Check_name(nonType) == 1)" +
               doRegex.tab(3) + "{" +
-              doRegex.tab(4) + "result = name(nonType);" +
-              doRegex.tab(4) + "Xuat_name(result);" +
+              doRegex.tab(4) + "result = p.name(nonType);" +
+              doRegex.tab(4) + "p.Xuat_name(result);" +
               doRegex.tab(3) + "}" +
               doRegex.tab(3) + "else" +             
               doRegex.tab(4) + "Console.WriteLine(\"Du lieu sai\");" +
