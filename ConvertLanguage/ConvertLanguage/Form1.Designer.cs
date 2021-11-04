@@ -52,12 +52,11 @@ namespace ConvertLanguage
             this.btnCpp = new System.Windows.Forms.Button();
             this.btnCsharp = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
+            this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnClear = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -65,7 +64,6 @@ namespace ConvertLanguage
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +79,7 @@ namespace ConvertLanguage
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 624);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1147, 624);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -97,7 +95,7 @@ namespace ConvertLanguage
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1047, 57);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1141, 57);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // menuStrip1
@@ -107,7 +105,7 @@ namespace ConvertLanguage
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1047, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1141, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -154,7 +152,7 @@ namespace ConvertLanguage
             this.btniconBuild});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1047, 29);
+            this.toolStrip1.Size = new System.Drawing.Size(1141, 29);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -199,6 +197,8 @@ namespace ConvertLanguage
             // 
             // toolStripLabel2
             // 
+            this.toolStripLabel2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.toolStripLabel2.ImageTransparentColor = System.Drawing.Color.Violet;
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(38, 26);
             this.toolStripLabel2.Text = "C++";
@@ -218,34 +218,34 @@ namespace ConvertLanguage
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel3);
-            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel4);
+            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel5);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 66);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1047, 555);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1141, 555);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.81633F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.163265F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.02041F));
             this.tableLayoutPanel3.Controls.Add(this.rtxInput, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.rtxOutput, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1047, 515);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1138, 515);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // rtxInput
             // 
+            this.rtxInput.BackColor = System.Drawing.SystemColors.Control;
             this.rtxInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtxInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxInput.Location = new System.Drawing.Point(3, 3);
@@ -257,11 +257,14 @@ namespace ConvertLanguage
             // 
             // rtxOutput
             // 
+            this.rtxOutput.BackColor = System.Drawing.SystemColors.Control;
             this.rtxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtxOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxOutput.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rtxOutput.Location = new System.Drawing.Point(525, 3);
             this.rtxOutput.Name = "rtxOutput";
-            this.rtxOutput.Size = new System.Drawing.Size(519, 509);
+            this.rtxOutput.ReadOnly = true;
+            this.rtxOutput.Size = new System.Drawing.Size(613, 509);
             this.rtxOutput.TabIndex = 1;
             this.rtxOutput.Text = "";
             this.rtxOutput.WordWrap = false;
@@ -284,10 +287,10 @@ namespace ConvertLanguage
             this.btnCpp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCpp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCpp.ForeColor = System.Drawing.Color.OrangeRed;
-            this.btnCpp.Location = new System.Drawing.Point(12, 180);
-            this.btnCpp.Margin = new System.Windows.Forms.Padding(12, 180, 3, 3);
+            this.btnCpp.Location = new System.Drawing.Point(6, 180);
+            this.btnCpp.Margin = new System.Windows.Forms.Padding(6, 180, 6, 3);
             this.btnCpp.Name = "btnCpp";
-            this.btnCpp.Size = new System.Drawing.Size(75, 58);
+            this.btnCpp.Size = new System.Drawing.Size(79, 58);
             this.btnCpp.TabIndex = 10;
             this.btnCpp.UseVisualStyleBackColor = false;
             this.btnCpp.Click += new System.EventHandler(this.btnCpp_Click);
@@ -299,10 +302,10 @@ namespace ConvertLanguage
             this.btnCsharp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCsharp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCsharp.ForeColor = System.Drawing.Color.OrangeRed;
-            this.btnCsharp.Location = new System.Drawing.Point(12, 244);
-            this.btnCsharp.Margin = new System.Windows.Forms.Padding(12, 3, 3, 3);
+            this.btnCsharp.Location = new System.Drawing.Point(6, 244);
+            this.btnCsharp.Margin = new System.Windows.Forms.Padding(6, 3, 6, 3);
             this.btnCsharp.Name = "btnCsharp";
-            this.btnCsharp.Size = new System.Drawing.Size(75, 58);
+            this.btnCsharp.Size = new System.Drawing.Size(79, 58);
             this.btnCsharp.TabIndex = 9;
             this.btnCsharp.UseVisualStyleBackColor = false;
             this.btnCsharp.Click += new System.EventHandler(this.btnCsharp_Click);
@@ -313,41 +316,28 @@ namespace ConvertLanguage
             this.textBox2.Margin = new System.Windows.Forms.Padding(1, 3, 3, 3);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(99, 22);
+            this.textBox2.Size = new System.Drawing.Size(97, 22);
             this.textBox2.TabIndex = 11;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tableLayoutPanel4
+            // openFile
             // 
-            this.tableLayoutPanel4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 515);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1047, 35);
-            this.tableLayoutPanel4.TabIndex = 1;
+            this.openFile.FileName = "openFileDialog1";
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.43132F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.56869F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.17949F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.82051F));
             this.tableLayoutPanel5.Controls.Add(this.btnClear, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox3, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 518);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1041, 29);
-            this.tableLayoutPanel5.TabIndex = 0;
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1138, 29);
+            this.tableLayoutPanel5.TabIndex = 1;
             // 
             // btnClear
             // 
@@ -356,31 +346,26 @@ namespace ConvertLanguage
             this.btnClear.Location = new System.Drawing.Point(3, 0);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(113, 26);
+            this.btnClear.Size = new System.Drawing.Size(132, 26);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // textBox3
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Right;
             this.textBox3.ForeColor = System.Drawing.Color.Red;
-            this.textBox3.Location = new System.Drawing.Point(525, 3);
+            this.textBox3.Location = new System.Drawing.Point(558, 3);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(420, 3, 3, 3);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(513, 23);
+            this.textBox3.Size = new System.Drawing.Size(577, 23);
             this.textBox3.TabIndex = 6;
-            // 
-            // openFile
-            // 
-            this.openFile.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 624);
+            this.ClientSize = new System.Drawing.Size(1147, 624);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -398,7 +383,6 @@ namespace ConvertLanguage
             this.tableLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
@@ -421,7 +405,6 @@ namespace ConvertLanguage
         private System.Windows.Forms.RichTextBox rtxInput;
         private System.Windows.Forms.RichTextBox rtxOutput;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btnCsharp;
         private System.Windows.Forms.Button btnCpp;
         private System.Windows.Forms.ToolStrip toolStrip1;

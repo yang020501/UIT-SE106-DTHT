@@ -21,8 +21,25 @@ namespace ConvertLanguage
         public Form1()
         {
             InitializeComponent();
-
+           
         }
+        private void ChangeColor(string find,Color color) // đổi màu từ được truyền 
+        {            
+            if (rtxOutput.Text.Contains(find))
+            {
+                var matchString = Regex.Escape(find);
+                foreach (Match match in Regex.Matches(rtxOutput.Text, matchString))
+                {
+                    rtxOutput.Select(match.Index, find.Length);
+                    rtxOutput.SelectionColor = color;
+                    rtxOutput.Select(rtxOutput.TextLength, 0);
+                    rtxOutput.SelectionColor = rtxOutput.ForeColor;
+                };
+            }
+        }
+
+
+
         private void btniconBuild_Click(object sender, EventArgs e)
         {
 
@@ -54,12 +71,37 @@ namespace ConvertLanguage
                 textBox2.Text = "Success!";              
                 Process.Start(Output);
             }
-            
+           
+
         }
         private void btnCsharp_Click(object sender, EventArgs e)
         {
             ConvertCSharp();
+            MakeColorCSharp();
+            
         }
+
+        private void MakeColorCSharp()
+        {
+            string[] blue = { "using", "float", "public", "static", "void", "int", "string", "bool", "namespace","ref"};
+            string[] pink = { "if", "else", "return" };
+            string[] green = { "Console", "WriteLine", "ReadLine" };
+            for(int i=0;i<blue.Length;i++)
+            {
+                ChangeColor(blue[i], Color.Blue);
+            }
+            for (int i = 0; i < pink.Length; i++)
+            {
+                ChangeColor(pink[i], Color.Violet);
+            }
+            for (int i = 0; i < pink.Length; i++)
+            {
+                ChangeColor(green[i], Color.Green);
+            }
+            ChangeColor("Program",Color.Orange);
+                     
+        }
+
         private void btnCpp_Click(object sender, EventArgs e)
         {
             ConvertCPP();
