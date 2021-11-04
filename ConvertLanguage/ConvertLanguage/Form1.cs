@@ -78,7 +78,18 @@ namespace ConvertLanguage
         {
             ConvertCSharp();
             MakeColorCSharp();
-            
+            //List<string[]> s = doRegex.doPost(doRegex.cutPost(rtxInput.Text));
+            //foreach (string[] item in s)
+            //{
+            //    for (int i = 0; i < item.Length; i++)
+            //    {
+            //        rtxOutput.Text += item[i] + " ";
+            //    }
+            //    rtxOutput.Text += "\n";
+            //}
+
+
+
         }
 
         private void MakeColorCSharp()
@@ -157,12 +168,38 @@ namespace ConvertLanguage
                 result = Regex.Replace(result, @"result", getRequestSharp("result"));// replace tên biến kết quả
                 result = Regex.Replace(result, @"intro", getRequestSharp("intro")); // replace khai báo trong hàm main
                 result = Regex.Replace(result, @"nhaphere", getRequestSharp("nhaphere")); // replace nhập 
+                result = Regex.Replace(result, @"post", getFunction()); // replace post 
                 rtxOutput.Text = Regex.Replace(file.Result, @"x:R", result);
             }
             catch (Exception )
             {
                 MessageBox.Show("Chưa có dữ liệu", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);                
             }
+        }
+
+        private string getFunction()
+        {
+            string result = "";
+            List<string[]> list = doRegex.doPost(doRegex.cutPost(rtxInput.Text));
+            foreach(string[] item in list)
+            {
+                result += "else if(";
+                for(int i=1;i<item.Length;i++)
+                {
+                    result += item[i] + " && ";
+                }
+                result = result.Remove(result.Length - 4); // xoá dấu && cuối
+                result += ")" +
+                    doRegex.tab(3)+"{" +
+                    doRegex.tab(4) + item[0]+";"+
+                    doRegex.tab(3) +"}" +
+                    doRegex.tab(3) ;
+
+            }
+            result = result.Remove(0, 5);// xoá else đầu
+            result = Regex.Replace(result, @"FALSE", "false");
+            result = Regex.Replace(result, @"TRUE", "true");
+            return result;
         }
 
         private string getRequestSharp(string s)
