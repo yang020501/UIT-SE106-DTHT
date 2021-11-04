@@ -21,8 +21,7 @@ namespace ConvertLanguage
         public Form1()
         {
             InitializeComponent();
-            
-            
+
         }
         private void btniconBuild_Click(object sender, EventArgs e)
         {

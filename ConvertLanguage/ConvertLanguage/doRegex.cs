@@ -71,13 +71,13 @@ namespace ConvertLanguage
                 return "string";
             else if (s == "R")
                 return "float";
-            else if (s == "Z" || s == "N")
+            else if (s == "Z" || s == "N" || s == "N1")
                 return "int";
             else if (s == "B")
                 return "bool";
             else if (s == "R*")
                 return "float[]";
-            else if (s == "Z*" || s == "N*")
+            else if (s == "Z*" || s == "N*" || s=="N1*")
                 return "int[]";
             return "";
         }
