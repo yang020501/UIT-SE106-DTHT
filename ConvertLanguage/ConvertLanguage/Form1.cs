@@ -195,10 +195,11 @@ namespace ConvertLanguage
                     }    
                     else // biến thường 
                     {
-                        result += "Console.Write(\"Moi nhap " + item.Name + " : \");" +
-                                 doRegex.tab(3)+ item.Name + " = " + item.Type+".Parse(Console.ReadLine());"+ doRegex.tab(3);
-                        result = result.Remove(result.Length - 4);
+                        result += doRegex.tab(3)+ "Console.Write(\"Moi nhap " + item.Name + " : \");" +
+                                 doRegex.tab(3) + item.Name + " = " + item.Type + ".Parse(Console.ReadLine());";
+                        
                     }
+                   
                 }    
                 
             }
