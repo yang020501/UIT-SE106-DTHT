@@ -64,13 +64,150 @@ namespace ConvertLanguage
 
         private void ConvertCSharp()
         {
-            string result;
-            CSharp file = new CSharp();
-            result = file.formNhap() + file.formXuat() + file.formCheck(doRegex.cutPre(rtxInput.Text)) + file.formFunction() + file.formMain();
-
-            rtxOutput.Text = Regex.Replace(file.Result, @"x:R",result );
+            try // xử lý thay đôit cho form định sẵn
+            {
+                string result;
+                CSharp file = new CSharp();
+                result = file.formNhap() + file.formXuat() + file.formCheck(doRegex.cutPre(rtxInput.Text)) + file.formFunction() + file.formMain(); // make form CSharp
+                result = Regex.Replace(result, @"name", getName());  // replace name 
+                result = Regex.Replace(result, @"reftype", getRequestSharp("reftype")); // replace ref type
+                result = Regex.Replace(result, @"nonrefType", getRequestSharp("nonrefType")); // replace non ref type
+                result = Regex.Replace(result, @"type", getRequestSharp("type")); // replace type 
+                result = Regex.Replace(result, @"nonType", getRequestSharp("nonType")); // replace nontype 
+                result = Regex.Replace(result, @"resultType", getRequestSharp("resultType")); // replace kiểu của kết quả
+                result = Regex.Replace(result, @"rstValue", getRequestSharp("rstValue")); // replacel kiểu value khi khai báo
+                result = Regex.Replace(result, @"result", getRequestSharp("result"));// replace tên biến kết quả
+                result = Regex.Replace(result, @"intro", getRequestSharp("intro")); // replace khai báo trong hàm main
+                result = Regex.Replace(result, @"nhaphere", getRequestSharp("nhaphere")); // replace nhập 
+                rtxOutput.Text = Regex.Replace(file.Result, @"x:R", result);
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("Chưa có dữ liệu", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);                
+            }
         }
 
-        
+        private string getRequestSharp(string s)
+        {
+            string result = "";
+            List<Var> Variables = new List<Var>(); // một list chứa các class Var(tên biến,kiểu,dữ liệu kiểu) 
+            if (s == "reftype")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // một mảng chuỗi đc cắt của dòng main(khai báo)
+                for (int i = 1; i < tmp.Length - 1; i++)
+                {
+                    Variables.Add(new Var(tmp[i]));
+                }
+                foreach (Var item in Variables)
+                {
+                    result += "ref " + item.Type + " " + item.Name + ",";
+                }
+                result = result.Remove(result.Length - 1); // xoá dấu phẩy cuối
+            }
+            else if (s == "nonrefType")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // một mảng chuỗi đc cắt của dòng main(khai báo)
+                for (int i = 1; i < tmp.Length - 1; i++)
+                {
+                    Variables.Add(new Var(tmp[i]));
+                }
+                foreach (Var item in Variables)
+                {
+                    result += "ref " + item.Name + ",";
+                }
+                result = result.Remove(result.Length - 1); // xoá dấu phẩy cuối
+            }
+            else if (s=="type")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // một mảng chuỗi đc cắt của dòng main(khai báo)
+                for (int i = 1; i < tmp.Length - 1; i++)
+                {
+                    Variables.Add(new Var(tmp[i]));
+                }
+                foreach (Var item in Variables)
+                {
+                    result += item.Type + " " + item.Name + ",";
+                }
+                result = result.Remove(result.Length - 1); // xoá dấu phẩy cuối
+            }
+            else if (s == "nonType")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // một mảng chuỗi đc cắt của dòng main(khai báo)
+                for (int i = 1; i < tmp.Length - 1; i++)
+                {
+                    Variables.Add(new Var(tmp[i]));
+                }
+                foreach (Var item in Variables)
+                {
+                    result += item.Name + ",";
+                }
+                result = result.Remove(result.Length - 1); // xoá dấu phẩy cuối
+            }
+            else if(s =="result")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
+                result = new Var(tmp[tmp.Length - 1]).Name;
+            }    
+            else if(s=="resultType")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
+                result = new Var(tmp[tmp.Length - 1]).Type;
+            }
+            else if (s == "rstValue")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
+                result = new Var(tmp[tmp.Length - 1]).Value;
+            }
+            else if (s == "intro")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // một mảng chuỗi đc cắt của dòng main(khai báo)
+                for (int i = 1; i < tmp.Length - 1; i++)
+                {
+                    Variables.Add(new Var(tmp[i]));
+                }
+                foreach (Var item in Variables)
+                {
+                    result += item.Type +" "+ item.Name + " = " + item.Value + ";"+doRegex.tab(3);
+                }
+                result = result.Remove(result.Length - 4); // xoá dấu \n tab cuối
+            }
+            else if (s == "nhaphere")
+            {
+                string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // một mảng chuỗi đc cắt của dòng main(khai báo)
+                for (int i = 1; i < tmp.Length - 1; i++)
+                {
+                    Variables.Add(new Var(tmp[i]));
+                }
+                foreach(Var item in Variables)
+                {
+                    if(item.Type == "float[]" || item.Type == "int[]" ) // nếu là mảng 
+                    {
+                        result += "Console.Write(\"Moi nhap so phan tu: \");" + 
+                                doRegex.tab(3)+"n = " + "type.Parse(Console.ReadLine());"+
+                                doRegex.tab(3) + item.Name+" = new " + doRegex.Arr(item.Type)+"[n];";
+                        result += doRegex.tab(3) + "for (int i = 0; i < "+item.Name+".Lenght; i++)" +
+                                doRegex.tab(3) + "{" +
+                                doRegex.tab(4) + "Console.Write(\"Nhap phan tu thu {0}: \",i);" +
+                                doRegex.tab(4) + item.Name + "[i] = " + doRegex.Arr(item.Type)+ ".Parse(Console.ReadLine());" +
+                                doRegex.tab(3) + "}";
+                        result = Regex.Replace(result, @"type", new Var(tmp[tmp.Length - 2]).Type);
+                        return result;
+                    }    
+                    else // biến thường 
+                    {
+                        result += "Console.Write(\"Moi nhap " + item.Name + " : \");" +
+                                 doRegex.tab(3)+ item.Name + " = " + item.Type+".Parse(Console.ReadLine());"+ doRegex.tab(3);
+                        result = result.Remove(result.Length - 4);
+                    }
+                }    
+                
+            }
+            return result;
+        }
+
+        private string getName() // dùng chung cho cả C# C++
+        {
+            return doRegex.doMain(doRegex.cutMain(rtxInput.Text))[0]; 
+        }
     }
 }
