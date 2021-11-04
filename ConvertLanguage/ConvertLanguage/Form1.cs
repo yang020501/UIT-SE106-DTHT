@@ -52,8 +52,7 @@ namespace ConvertLanguage
             {
                 
                 textBox2.ForeColor = Color.Blue;
-                textBox2.Text = "Success!";
-              
+                textBox2.Text = "Success!";              
                 Process.Start(Output);
             }
             
