@@ -55,7 +55,7 @@ namespace ConvertLanguage
         public static string cutPre(string txt)
         {
             clearSpace(ref txt);
-            MatchCollection pre = Regex.Matches(txt, @"pre(.*?)post"); // do match có trùng pre,post nên lấy group khi chạy regextester.exe
+            MatchCollection pre = Regex.Matches(txt, @"pre(.*?)post"); // do match có trùng pre,post nên lấy () group khi chạy regextester.exe
             return txt = pre[0].Groups[1].Value;
         }
         //Hàm cắt dòng post
@@ -63,7 +63,29 @@ namespace ConvertLanguage
         {
             clearSpace(ref txt);
             MatchCollection post = Regex.Matches(txt, @"post(.+)");
-            return txt = post[0].Groups[1].Value; // do match có trùng post nên lấy group khi chạy regextester.exe
+            return txt = post[0].Groups[1].Value; // do match có trùng post nên lấy () group khi chạy regextester.exe
+        }
+        //Hàm cắt thành phần trong post
+        public static List<string[]> doPost(string txt)
+        {
+            List<string[]> list = new List<string[]>();
+            clearSpace(ref txt);
+            txt = Regex.Replace(txt, @"\(", "");
+            txt = Regex.Replace(txt, @"\)", ""); // clear hết ngoặc 
+            string[] s = Regex.Split(txt, @"\|\|"); // cắt các cụm kq và đk
+            for (int i = 0; i < s.Length; i++)
+            {
+                string[] a = Regex.Split(s[i], @"&&"); // cắt các biểu thức trong 1 cụm lưu vào mảng
+                list.Add(a);
+            }
+            foreach(string[] item in list)
+            {
+                for(int i=1;i<item.Length;i++)
+                {
+                    item[i] = Regex.Replace(item[i], @"\b(=)", "=="); // thay = trong dk thành == 
+                }    
+            }    
+            return list; // trả về danh sách các cụm điều kiện và kq đã đc cắt
         }
         public static string replaceType(string s)
         {
@@ -87,6 +109,7 @@ namespace ConvertLanguage
                 return "float";
             else
                 return "int";
+            
         }
 
         //public static string[] doPre(string txt) // txt là một chuỗi Pre
