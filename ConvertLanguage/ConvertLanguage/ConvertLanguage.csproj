@@ -58,7 +58,6 @@
     </Compile>
     <Compile Include="KhaiBao.cs" />
     <Compile Include="Post.cs" />
-    <Compile Include="Pre.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Var.cs" />
