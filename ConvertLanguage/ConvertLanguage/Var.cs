@@ -30,7 +30,7 @@ namespace ConvertLanguage
             }    
             else if(type == "bool")
             {
-                value = "true";
+                value = "false";
             }    
             else if (type == "float[]")
             {

@@ -69,7 +69,7 @@ namespace ConvertLanguage
             string result = "public static void Main(string[] args)"+
               doRegex.tab(2) + "{"+
               doRegex.tab(3) + "intro" +
-              doRegex.tab(3) + "result;" +
+              doRegex.tab(3) + "resultType resultName;" +
               doRegex.tab(3) + "Program p = new Program();" +
               doRegex.tab(3) + "p.Nhap_name(nonrefType);" +
               doRegex.tab(3) + "if(p.Check_name(nonType) == 1)" +

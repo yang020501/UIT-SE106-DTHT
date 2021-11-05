@@ -64,7 +64,7 @@ namespace ConvertLanguage
             string result = "int Main()" +
               doRegex.tab(0) + "{" +
               doRegex.tab(1) + "intro" +
-              doRegex.tab(1) + "result;" +
+              doRegex.tab(1) + "resultType resultName;" +
               doRegex.tab(1) + "Nhap_name(nonType);" +
               doRegex.tab(1) + "if(Check_name(nonType) == 1)" +
               doRegex.tab(1) + "{" +

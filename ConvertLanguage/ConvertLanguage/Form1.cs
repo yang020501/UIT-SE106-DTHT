@@ -37,7 +37,7 @@ namespace ConvertLanguage
                 };
             }
         }
-        private void ChangeColorPat(string find, Color color) // đổi màu từ được truyền 
+        private void ChangeColorPat(string find, Color color) // đổi màu pattern được truyền 
         {
             if (Regex.IsMatch(rtxOutput.Text,find))
             {
@@ -293,9 +293,7 @@ namespace ConvertLanguage
             else if (s == "result")
             {
                 string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
-                Var kq = new Var(tmp[tmp.Length - 1]);
-                if (kq.Type == "bool")
-                    return result = kq.Type + " " + kq.Name;
+                Var kq = new Var(tmp[tmp.Length - 1]);               
                 result = kq.Type + " " + kq.Name + " = " + kq.Value;
             }
             else if (s == "resultType")
@@ -403,9 +401,7 @@ namespace ConvertLanguage
             else if (s == "result")
             {
                 string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
-                Var kq = new Var(tmp[tmp.Length - 1]);
-                if (kq.Type == "bool")
-                    return result = kq.Type + " " + kq.Name;
+                Var kq = new Var(tmp[tmp.Length - 1]);             
                 result = kq.Type + " " + kq.Name + " = " + kq.Value;
             }
             else if (s == "resultType")
