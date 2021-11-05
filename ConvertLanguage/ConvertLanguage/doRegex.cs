@@ -86,7 +86,8 @@ namespace ConvertLanguage
                 }    
             }    
             return list; // trả về danh sách các cụm điều kiện và kq đã đc cắt
-        }
+        }       
+
         public static string replaceType(string s)
         {
             if (s == "char*")
