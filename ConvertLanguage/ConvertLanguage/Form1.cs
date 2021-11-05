@@ -50,7 +50,6 @@ namespace ConvertLanguage
                 };
             }
         }
-
         private void btniconBuild_Click(object sender, EventArgs e)
         {
 
@@ -82,8 +81,7 @@ namespace ConvertLanguage
                 textBox2.Text = "Success!";
                 textBox3.Clear();
                 Process.Start(Output);
-            }
-           
+            }         
 
         }
         private void btnCsharp_Click(object sender, EventArgs e)
@@ -131,7 +129,6 @@ namespace ConvertLanguage
             ChangeColorPat(a, Color.OrangeRed); // đổi màu các chuỗi
 
         }
-
         private void btnCpp_Click(object sender, EventArgs e)
         {
             ConvertCPP();
@@ -162,7 +159,6 @@ namespace ConvertLanguage
             saveFile.ShowDialog();          
 
         }       
-
         private void ConvertCPP()
         {
             try
@@ -187,7 +183,6 @@ namespace ConvertLanguage
                 MessageBox.Show("Chưa có dữ liệu", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void ConvertCSharp()
         {
             try // xử lý thay đôit cho form định sẵn
@@ -213,7 +208,6 @@ namespace ConvertLanguage
                 MessageBox.Show("Chưa có dữ liệu", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);                
             }
         }
-
         private string getFunction(int x = 0)
         {
             int k=3;
@@ -240,7 +234,6 @@ namespace ConvertLanguage
             result = Regex.Replace(result, @"TRUE", "true");
             return result;
         } // dùng cho cả 2 C++ C#
-
         private string getRequestSharp(string s)
         {
             string result = "";
