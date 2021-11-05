@@ -17,9 +17,8 @@ namespace ConvertLanguage
         public string Value { get => value; set => this.value = value; }
         public Var(string s)
         {
-            string[] a = Regex.Split(s, @":"); // s có dạng là x:R thì hàm sẽ cắt và trả về a là  x R
+            string[] a = Regex.Split(s, @":"); // s có dạng là chuỗi biến x:R,x:R thì hàm sẽ cắt và trả về a là  x R
             name = a[0];
-            type = a[1];
             type = doRegex.replaceType(a[1]); // lấy về chuỗi type đúng
             if(type == "int" || type == "float")
             {
@@ -42,7 +41,7 @@ namespace ConvertLanguage
                 value = "new int[0]";
             }
         }
-        
+      
 
 
     }

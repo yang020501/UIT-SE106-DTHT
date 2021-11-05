@@ -52,11 +52,11 @@ namespace ConvertLanguage
             this.btnCpp = new System.Windows.Forms.Button();
             this.btnCsharp = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnClear = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
+            this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -122,20 +122,20 @@ namespace ConvertLanguage
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openToolStripMenuItem.Text = "Open file";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -194,6 +194,7 @@ namespace ConvertLanguage
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(27, 26);
             this.toolStripLabel1.Text = "C#";
+            this.toolStripLabel1.Click += new System.EventHandler(this.btnCsharp_Click);
             // 
             // toolStripLabel2
             // 
@@ -202,6 +203,7 @@ namespace ConvertLanguage
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(38, 26);
             this.toolStripLabel2.Text = "C++";
+            this.toolStripLabel2.Click += new System.EventHandler(this.btnCpp_Click);
             // 
             // btniconBuild
             // 
@@ -250,7 +252,7 @@ namespace ConvertLanguage
             this.rtxInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxInput.Location = new System.Drawing.Point(3, 3);
             this.rtxInput.Name = "rtxInput";
-            this.rtxInput.Size = new System.Drawing.Size(412, 509);
+            this.rtxInput.Size = new System.Drawing.Size(458, 509);
             this.rtxInput.TabIndex = 0;
             this.rtxInput.Text = "";
             this.rtxInput.WordWrap = false;
@@ -261,10 +263,10 @@ namespace ConvertLanguage
             this.rtxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtxOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxOutput.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rtxOutput.Location = new System.Drawing.Point(525, 3);
+            this.rtxOutput.Location = new System.Drawing.Point(559, 3);
             this.rtxOutput.Name = "rtxOutput";
             this.rtxOutput.ReadOnly = true;
-            this.rtxOutput.Size = new System.Drawing.Size(613, 509);
+            this.rtxOutput.Size = new System.Drawing.Size(576, 509);
             this.rtxOutput.TabIndex = 1;
             this.rtxOutput.Text = "";
             this.rtxOutput.WordWrap = false;
@@ -275,9 +277,9 @@ namespace ConvertLanguage
             this.flowLayoutPanel2.Controls.Add(this.btnCsharp);
             this.flowLayoutPanel2.Controls.Add(this.textBox2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(421, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(467, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(98, 509);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(86, 509);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // btnCpp
@@ -320,10 +322,6 @@ namespace ConvertLanguage
             this.textBox2.TabIndex = 11;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // openFile
-            // 
-            this.openFile.FileName = "openFileDialog1";
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -350,6 +348,7 @@ namespace ConvertLanguage
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // textBox3
             // 
@@ -360,6 +359,10 @@ namespace ConvertLanguage
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(577, 23);
             this.textBox3.TabIndex = 6;
+            // 
+            // openFile
+            // 
+            this.openFile.FileName = "openFileDialog1";
             // 
             // Form1
             // 

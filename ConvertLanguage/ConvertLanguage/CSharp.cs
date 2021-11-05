@@ -31,9 +31,9 @@ namespace ConvertLanguage
         }
         public string formXuat()
         {
-            string result = "public void Xuat_name(resultType result)" +
+            string result = "public void Xuat_name(resultType resultName)" +
                 doRegex.tab(2) + "{" +
-                doRegex.tab(3) + "Console.WriteLine(\"Ket qua la: \" + result);" +
+                doRegex.tab(3) + "Console.WriteLine(\"Ket qua la: \" + resultName);" +
                 doRegex.tab(2) + "}" +
                 doRegex.tab(2);
             return result;
@@ -56,9 +56,9 @@ namespace ConvertLanguage
         {
             string result = "public resultType name(type)" +
                doRegex.tab(2) + "{" +
-               doRegex.tab(3) + "resultType result = rstValue;" +
+               doRegex.tab(3) + "result;" +
                doRegex.tab(3) + "post" +
-               doRegex.tab(3) + "return result;" +
+               doRegex.tab(3) + "return resultName;" +
                doRegex.tab(2) + "}" +
                doRegex.tab(2);
             return result;
@@ -69,13 +69,13 @@ namespace ConvertLanguage
             string result = "public static void Main(string[] args)"+
               doRegex.tab(2) + "{"+
               doRegex.tab(3) + "intro" +
-              doRegex.tab(3) + "resultType result = rstValue;" +
+              doRegex.tab(3) + "result;" +
               doRegex.tab(3) + "Program p = new Program();" +
               doRegex.tab(3) + "p.Nhap_name(nonrefType);" +
               doRegex.tab(3) + "if(p.Check_name(nonType) == 1)" +
               doRegex.tab(3) + "{" +
-              doRegex.tab(4) + "result = p.name(nonType);" +
-              doRegex.tab(4) + "p.Xuat_name(result);" +
+              doRegex.tab(4) + "resultName = p.name(nonType);" +
+              doRegex.tab(4) + "p.Xuat_name(resultName);" +
               doRegex.tab(3) + "}" +
               doRegex.tab(3) + "else" +             
               doRegex.tab(4) + "Console.WriteLine(\"Du lieu sai\");" +
