@@ -50,6 +50,19 @@ namespace ConvertLanguage
                 };
             }
         }
+        private void ChangeColorPatInput(string find, Color color) // đổi màu pattern được truyền cho input
+        {
+            if (Regex.IsMatch(rtxInput.Text, find))
+            {
+                foreach (Match match in Regex.Matches(rtxInput.Text, find))
+                {
+                    rtxInput.Select(match.Groups[1].Index, (match.Groups[1].Value.Length));
+                    rtxInput.SelectionColor = color;
+                    rtxInput.Select(rtxInput.TextLength, 0);
+                    rtxInput.SelectionColor = rtxInput.ForeColor;
+                };
+            }
+        }
         private void btniconBuild_Click(object sender, EventArgs e)
         {
 
@@ -149,10 +162,26 @@ namespace ConvertLanguage
             if(openFile.ShowDialog() == DialogResult.OK)
             {
                 StreamReader read = new StreamReader(openFile.FileName);
-                rtxInput.Text = read.ReadToEnd().Trim();               
-                read.Close();               
+                string s;
+                string result = "";
+                int i = 0;
+                while((s=read.ReadLine()) != null)
+                {
+                    s=s.Trim();
+                    if(i==0)
+                    {
+                        doRegex.clearSpace(ref s);
+                    }
+                    doRegex.clearSpace2(ref s);
+                    result += s+"\n";
+                    i++;
+                }
+                rtxInput.Text = result;
+                read.Close();
+                string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
+                ChangeColorPatInput(a,Color.Red);
             }
-            
+
         }       
         private void btnSave_Click(object sender, EventArgs e)
         {

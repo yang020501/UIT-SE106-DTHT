@@ -16,6 +16,11 @@ namespace ConvertLanguage
             txt = Regex.Replace(txt, @"\s+", "");
 
         }
+        public static void clearSpace2(ref string s)
+        {
+            while (s.Contains("  "))
+                s = s.Replace("  ", " ");
+        }
         public static string tab(int x)
         {
             string s = "\n";
@@ -38,7 +43,7 @@ namespace ConvertLanguage
             for (int i = 1; i <= Type.Count; i++)
             {
 
-                result[i] = Type[i - 1].Value; // or có thể tạo gr type nhưng kết quả ý chang
+                result[i] = Type[i - 1].Value; 
             }
             return result; // trả về kiểu mảng chuỗi với phần tử đầu là name và cuối là result giữa là các biến
 
@@ -46,7 +51,7 @@ namespace ConvertLanguage
         // hàm cắt dòng main (khai báo)
         public static string cutMain(string txt) // dạng **** các chữ trc pre
         {
-            clearSpace(ref txt); // clear toàn bộ space và \n
+            clearSpace(ref txt); 
             MatchCollection main = Regex.Matches(txt, @".*?(?=pre)");
             return txt = main[0].Value; 
 
@@ -55,7 +60,7 @@ namespace ConvertLanguage
         public static string cutPre(string txt) // dạng : pre****post
         {
             clearSpace(ref txt);
-            MatchCollection pre = Regex.Matches(txt, @"pre(.*?)post"); // do match có trùng pre,post nên lấy () group khi chạy regextester.exe
+            MatchCollection pre = Regex.Matches(txt, @"pre(.*?)post"); 
             return txt = pre[0].Groups[1].Value;
         }
         //Hàm cắt dòng post
@@ -71,7 +76,7 @@ namespace ConvertLanguage
             List<string[]> list = new List<string[]>();
             clearSpace(ref txt);
             txt = Regex.Replace(txt, @"\(", "");
-            txt = Regex.Replace(txt, @"\)", ""); // clear hết ngoặc 
+            txt = Regex.Replace(txt, @"\)", ""); 
             string[] s = Regex.Split(txt, @"\|\|"); // cắt các cụm kq và đk
             for (int i = 0; i < s.Length; i++)
             {
@@ -113,16 +118,5 @@ namespace ConvertLanguage
             
         }
 
-        //public static string[] doPre(string txt) // txt là một chuỗi Pre
-        //{
-        //    MatchCollection Pre = Regex.Matches(txt, @"(?<type>((\w)+(\W)+(\w)+)|\W|(\W)+)");
-        //    string[] result = new string[Pre.Count];
-        //    for (int i = 0; i < Pre.Count; i++)
-        //    {
-        //        result[i] = Pre[i].Value.ToString(); 
-        //    }
-
-        //    return result;
-        //}
     }
 }
