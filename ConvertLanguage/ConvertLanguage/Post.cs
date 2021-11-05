@@ -56,8 +56,8 @@ namespace ConvertLanguage
         }
 
         //Hàm tách chuỗi của post condition có chứa array
-        public string Tach_PostArray(string post)
-        {         
+        public static string[] Tach_PostArray(string post)
+        {
             doRegex.clearSpace(ref post);
 
             for (int i = 0; i < post.Length; i++)
@@ -81,22 +81,33 @@ namespace ConvertLanguage
             }
 
             post = post.Substring(1, post.Length - 2);
-           
-            string result = "";
+
+            string[] result = new string[3];
+            int count = 0;
             int indext = 0;
 
             for (int i = 0; i < post.Length; i++)
             {
                 if (post[i] == '.' && post[i - 1] != '.' && post[i + 1] != '.')
                 {
-                    result += post.Substring(indext, i - indext + 1) + "\n";
+                    result[count] = post.Substring(indext, i - indext + 1);
                     indext = i + 1;
+                    count++;
                 }
             }
 
-            result += post.Substring(indext, post.Length - indext);
+            result[count] = post.Substring(indext, post.Length - indext);
+            if (count == 2)
+            {
+                return result;
+            }
+            else
+            {
+                count++;
+                result[count] = "";
+                return result;
+            }
 
-            return result;
         }
 
     }
