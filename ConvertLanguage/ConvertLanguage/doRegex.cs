@@ -44,7 +44,7 @@ namespace ConvertLanguage
 
         }
         // hàm cắt dòng main (khai báo)
-        public static string cutMain(string txt)
+        public static string cutMain(string txt) // dạng **** các chữ trc pre
         {
             clearSpace(ref txt); // clear toàn bộ space và \n
             MatchCollection main = Regex.Matches(txt, @".*?(?=pre)");
@@ -52,7 +52,7 @@ namespace ConvertLanguage
 
         }
         //hàm cắt dòng pre 
-        public static string cutPre(string txt)
+        public static string cutPre(string txt) // dạng : pre****post
         {
             clearSpace(ref txt);
             MatchCollection pre = Regex.Matches(txt, @"pre(.*?)post"); // do match có trùng pre,post nên lấy () group khi chạy regextester.exe
@@ -62,7 +62,7 @@ namespace ConvertLanguage
         public static string cutPost(string txt)
         {
             clearSpace(ref txt);
-            MatchCollection post = Regex.Matches(txt, @"post(.+)");
+            MatchCollection post = Regex.Matches(txt, @"post(.+)");  //dạng ***** các chứ sau post
             return txt = post[0].Groups[1].Value; // do match có trùng post nên lấy () group khi chạy regextester.exe
         }
         //Hàm cắt thành phần trong post
@@ -85,7 +85,7 @@ namespace ConvertLanguage
                     item[i] = Regex.Replace(item[i], @"\b(=)", "=="); // thay = trong dk thành == 
                 }    
             }    
-            return list; // trả về danh sách các cụm điều kiện và kq đã đc cắt
+            return list; // trả về danh sách các cụm điều kiện và kq đã đc cắt dạng kq=xxx && dk && dk của 1 item
         }
         public static string replaceType(string s)
         {
@@ -103,6 +103,7 @@ namespace ConvertLanguage
                 return "int[]";
             return "";
         }
+
         public static string Arr(string s)
         {
             if (s == "float[]")
