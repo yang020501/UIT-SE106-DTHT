@@ -28,7 +28,17 @@ namespace ConvertLanguage
         public bool isArray = false;
         private bool Csturn;
         private bool Cppturn=false;
+        private void fixFormatToolStripMenuItem_Click(object sender, EventArgs e)// ấn để chỉnh lại input khi copy paste vào 
+        {
 
+            rtxInput.Text = rtxInput.Text.Trim();
+            string[] tmp = Regex.Split(rtxInput.Text, @".?(?=pre)"); // 0 trc pre 1 tinh tu pre
+            doRegex.clearSpace(ref tmp[0]);
+            doRegex.clearSpace2(ref tmp[1]);
+            rtxInput.Text = tmp[0] + "\n" + tmp[1];
+            string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
+            ChangeColorPatInput(a, Color.Red);
+        }
         private void ChangeColor(string find,Color color) // đổi màu từ được truyền 
         {            
             if (rtxOutput.Text.Contains(find))
@@ -80,13 +90,12 @@ namespace ConvertLanguage
             else
                 Build(rtxOutput.Text);            
         }
-        private void Build(string code)
+        private void Build(string code)// just C# 
         {
             textBox3.Clear();
             CSharpCodeProvider codeProvider = new CSharpCodeProvider();
             ICodeCompiler icc = codeProvider.CreateCompiler();
             string Output = "Application.exe";
-            textBox2.Text = "";
             CompilerParameters parameters = new CompilerParameters();
             parameters.GenerateExecutable = true;
             parameters.OutputAssembly = Output;
@@ -112,7 +121,7 @@ namespace ConvertLanguage
                 textBox3.Clear();
                 Process.Start(Output);
             }
-        } // just C#
+        } 
         private void btnCsharp_Click(object sender, EventArgs e)
         {
             rtxOutput.Text = ConvertCSharp();
@@ -131,7 +140,7 @@ namespace ConvertLanguage
             Csturn = false;
             Cppturn = true;
         }
-        private void MakeColorCSharp()
+        private void MakeColorCSharp()// làm màu keyword C#
         {
             string[] blue = { "using", "float", "public", "static", "void", "int", "string", "bool", "namespace","ref"};
             string[] pink = { "if", "else", "return" };
@@ -152,8 +161,8 @@ namespace ConvertLanguage
             string a = "\".*\"";
             ChangeColorPatOutput(a, Color.OrangeRed); // đổi màu các chuỗi
                      
-        }
-        private void MakeColorCPp()
+        } 
+        private void MakeColorCPp() // làm màu keyword C++
         {
             string[] blue = { "using", "float", "public", "static", "void", "int", "string", "bool", "namespace", "cout", "cin" };
             string[] pink = { "if", "else", "return" };
@@ -169,7 +178,7 @@ namespace ConvertLanguage
             ChangeColor("std", Color.Green);
             string a = "\".*\"";
             ChangeColorPatOutput(a, Color.OrangeRed); // đổi màu các chuỗi
-        }       
+        } 
         private void btnClear_Click(object sender, EventArgs e)
         {
             rtxInput.Clear();
@@ -272,55 +281,7 @@ namespace ConvertLanguage
                 MessageBox.Show("Chưa có dữ liệu hoặc dữ liệu không hợp lệ!", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return "";
             }
-        }
-        public static string layKhoang(string s)
-        {
-            int index1 = 0;
-            int index2 = 0;
-            string vari = "";
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] == '{')
-                {
-                    index1 = i;
-                }
-
-                if (s[i] == '}')
-                {
-                    index2 = i;
-                }
-
-                if (s[i] == 'T' && s[i + 1] == 'H')
-                {
-                    vari = s.Substring(2, i - 2);
-                }
-
-            }
-
-
-            string min = ""; string max = "";
-            string khoang = s.Substring(index1 + 1, index2 - index1);
-
-            for (int i = 0; i < khoang.Length; i++)
-            {
-                if (khoang[i] == '.' && khoang[i - 1] == '.')
-                {
-                    min = khoang.Substring(0, i - 1);
-                    max = khoang.Substring(i + 1, khoang.Length - i - 2);
-                    break;
-                }
-            }
-            int check;
-            if (int.TryParse(min, out check))
-            {
-                check -= 1;
-                min = check.ToString();
-            }
-
-            string result = "for(int " + vari + " = " + min + "; " + vari + " < " + max + "; " + vari + "++)";
-
-            return result;
-        }       
+        }        
         private string getRequestSharp(string s)
         {
             string result = "";
@@ -558,7 +519,7 @@ namespace ConvertLanguage
         {
             return doRegex.doMain(doRegex.cutMain(rtxInput.Text))[0]; 
         }
-        private string getFunction(int x = 0)
+        private string getFunction(int x = 0) // dùng cho cả 2 C++ C#
         {
             string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // lấy biến result của implicit để xét đk
             result_type = new Var(tmp[tmp.Length - 1]).Type; 
@@ -762,18 +723,55 @@ namespace ConvertLanguage
             {
                 return "";
             }
-        } // dùng cho cả 2 C++ C#
-
-        private void fixFormatToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            rtxInput.Text = rtxInput.Text.Trim();
-            string[] tmp = Regex.Split(rtxInput.Text,@".?(?=pre)"); // 0 trc pre 1 tinh tu pre
-            doRegex.clearSpace(ref tmp[0]);
-            doRegex.clearSpace2(ref tmp[1]);
-            rtxInput.Text = tmp[0]+"\n" +tmp[1];
-            string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
-            ChangeColorPatInput(a, Color.Red);
         }
+        public static string layKhoang(string s)
+        {
+            int index1 = 0;
+            int index2 = 0;
+            string vari = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '{')
+                {
+                    index1 = i;
+                }
+
+                if (s[i] == '}')
+                {
+                    index2 = i;
+                }
+
+                if (s[i] == 'T' && s[i + 1] == 'H')
+                {
+                    vari = s.Substring(2, i - 2);
+                }
+
+            }
+
+
+            string min = ""; string max = "";
+            string khoang = s.Substring(index1 + 1, index2 - index1);
+
+            for (int i = 0; i < khoang.Length; i++)
+            {
+                if (khoang[i] == '.' && khoang[i - 1] == '.')
+                {
+                    min = khoang.Substring(0, i - 1);
+                    max = khoang.Substring(i + 1, khoang.Length - i - 2);
+                    break;
+                }
+            }
+            int check;
+            if (int.TryParse(min, out check))
+            {
+                check -= 1;
+                min = check.ToString();
+            }
+
+            string result = "for(int " + vari + " = " + min + "; " + vari + " < " + max + "; " + vari + "++)";
+
+            return result;
+        }       
+
     }
 }

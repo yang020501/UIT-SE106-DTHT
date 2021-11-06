@@ -52,7 +52,7 @@ namespace ConvertLanguage
         public static string cutMain(string txt) // dạng **** các chữ trc pre
         {
             clearSpace(ref txt); 
-            MatchCollection main = Regex.Matches(txt, @".*?(?=pre)");
+            MatchCollection main = Regex.Matches(txt, @".*(?=pre)");
             return txt = main[0].Value; 
 
         }
@@ -60,7 +60,7 @@ namespace ConvertLanguage
         public static string cutPre(string txt) // dạng : pre****post
         {
             clearSpace(ref txt);
-            MatchCollection pre = Regex.Matches(txt, @"pre(.*?)post"); 
+            MatchCollection pre = Regex.Matches(txt, @"pre(.*)post"); 
             return txt = pre[0].Groups[1].Value;
         }
         //Hàm cắt dòng post
