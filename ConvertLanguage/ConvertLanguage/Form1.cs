@@ -24,7 +24,7 @@ namespace ConvertLanguage
           
         }
         public string result_name;
-        public string result_type;
+        public string result_type ;       
         public bool isArray = false;
         private bool Csturn;
         private bool Cppturn=false;
@@ -112,7 +112,7 @@ namespace ConvertLanguage
                 textBox3.Clear();
                 Process.Start(Output);
             }
-        }
+        } // just C#
         private void btnCsharp_Click(object sender, EventArgs e)
         {
             rtxOutput.Text = ConvertCSharp();
@@ -124,7 +124,9 @@ namespace ConvertLanguage
         }
         private void btnCpp_Click(object sender, EventArgs e)
         {
-            ConvertCPP();
+            rtxOutput.Text = ConvertCPP();
+            textBox2.Clear();
+            textBox3.Clear();
             MakeColorCPp();
             Csturn = false;
             Cppturn = true;
@@ -219,7 +221,7 @@ namespace ConvertLanguage
 
             }
         }       
-        private void ConvertCPP()
+        private string ConvertCPP()
         {
             try
             {
@@ -236,11 +238,12 @@ namespace ConvertLanguage
                 result = Regex.Replace(result, @"intro", getRequestPp("intro")); // replace khai báo trong hàm main
                 result = Regex.Replace(result, @"nhaphere", getRequestPp("nhaphere")); // replace nhập 
                 result = Regex.Replace(result, @"post", getFunction(1)); // replace post 
-                rtxOutput.Text = Regex.Replace(file.Result, @"x:R", result);
+                return result = Regex.Replace(file.Result, @"x:R", result);
             }
             catch(Exception)
             {
                 MessageBox.Show("Chưa có dữ liệu hoặc dữ liệu không hợp lệ!", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
             }
         }
         private string ConvertCSharp()
@@ -382,8 +385,7 @@ namespace ConvertLanguage
             else if (s == "resultType")
             {
                 string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
-                result = new Var(tmp[tmp.Length - 1]).Type;
-                result_type = new Var(tmp[tmp.Length - 1]).Type;              
+                result = new Var(tmp[tmp.Length - 1]).Type;       
             }
             else if (s == "resultName")
             {
@@ -536,7 +538,7 @@ namespace ConvertLanguage
                                 doRegex.tab(2) + "cin >> " +item.Name + "[i];" +
                                 doRegex.tab(1) + "}";
                         isArray = true;
-                        return result;
+                        return result;                        
                     }
                     else // biến thường 
                     {
@@ -556,7 +558,8 @@ namespace ConvertLanguage
         }
         private string getFunction(int x = 0)
         {
-           
+            string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
+            result_type = new Var(tmp[tmp.Length - 1]).Type;
             if (isArray == false)
             {
                 int k = 3; // để định dạng tab tuỳ theo form C# or C
