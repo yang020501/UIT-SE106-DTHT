@@ -35,16 +35,27 @@ namespace ConvertLanguage
         }
         public string formCheck(string txt)
         {
+            string result = "";
             if (txt == "")
-                txt = "true";
-            string result = "int Check_name(type)" +
+            {
+                result = "public int Check_name(type)" +
                 doRegex.tab(0) + "{" +
-                doRegex.tab(1) + "if( " + txt + " )" +
-                doRegex.tab(2) + "return 1;" +
-                doRegex.tab(1) + "else" +
-                doRegex.tab(2) + "return 0;" +
+                doRegex.tab(1) + "return 1;" +
                 doRegex.tab(0) + "}" +
-                doRegex.tab(0);
+                 doRegex.tab(0);
+
+            }
+            else
+            {
+                result = "int Check_name(type)" +
+                    doRegex.tab(0) + "{" +
+                    doRegex.tab(1) + "if( " + txt + " )" +
+                    doRegex.tab(2) + "return 1;" +
+                    doRegex.tab(1) + "else" +
+                    doRegex.tab(2) + "return 0;" +
+                    doRegex.tab(0) + "}" +
+                    doRegex.tab(0);
+            }
             return result;
         }
         public string formFunction()

@@ -20,12 +20,14 @@ namespace ConvertLanguage
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();          
           
         }
         public string result_name;
         public string result_type;
         public bool isArray = false;
+        private bool Csturn;
+        private bool Cppturn=false;
 
         private void ChangeColor(string find,Color color) // đổi màu từ được truyền 
         {            
@@ -41,7 +43,7 @@ namespace ConvertLanguage
                 };
             }
         }
-        private void ChangeColorPat(string find, Color color) // đổi màu pattern được truyền 
+        private void ChangeColorPatOutput(string find, Color color) // đổi màu pattern được truyền 
         {
             if (Regex.IsMatch(rtxOutput.Text,find))
             {
@@ -69,42 +71,63 @@ namespace ConvertLanguage
         }
         private void btniconBuild_Click(object sender, EventArgs e)
         {
-
+            if (Cppturn == true)
+            {
+                string temp;
+                temp = ConvertCSharp();
+                Build(temp);
+            }
+            else
+                Build(rtxOutput.Text);            
+        }
+        private void Build(string code)
+        {
+            textBox3.Clear();
             CSharpCodeProvider codeProvider = new CSharpCodeProvider();
             ICodeCompiler icc = codeProvider.CreateCompiler();
-            string Output =  "Application.exe";
+            string Output = "Application.exe";
             textBox2.Text = "";
             CompilerParameters parameters = new CompilerParameters();
             parameters.GenerateExecutable = true;
             parameters.OutputAssembly = Output;
-            CompilerResults results = icc.CompileAssemblyFromSource(parameters,rtxOutput.Text);
+            CompilerResults results = icc.CompileAssemblyFromSource(parameters, code);
             if (results.Errors.Count > 0)
             {
                 textBox2.ForeColor = Color.Red;
                 textBox2.Text = "Error!";
                 foreach (CompilerError CompErr in results.Errors)
                 {
-                   textBox3.Text = textBox3.Text +
-                                "Line number " + CompErr.Line +
-                                ", Error Number: " + CompErr.ErrorNumber +
-                                ", '" + CompErr.ErrorText + ";" +
-                                Environment.NewLine + Environment.NewLine;
+                    textBox3.Text = textBox3.Text +
+                                 "Line number " + CompErr.Line +
+                                 ", Error Number: " + CompErr.ErrorNumber +
+                                 ", '" + CompErr.ErrorText + ";" +
+                                 Environment.NewLine + Environment.NewLine;
                 }
             }
             else
             {
-                
+
                 textBox2.ForeColor = Color.Blue;
                 textBox2.Text = "Success!";
                 textBox3.Clear();
                 Process.Start(Output);
-            }         
-
+            }
         }
         private void btnCsharp_Click(object sender, EventArgs e)
         {
-            ConvertCSharp();
-            MakeColorCSharp();           
+            rtxOutput.Text = ConvertCSharp();
+            MakeColorCSharp();
+            textBox2.Clear();
+            textBox3.Clear();
+            Csturn = true;
+            Cppturn = false;
+        }
+        private void btnCpp_Click(object sender, EventArgs e)
+        {
+            ConvertCPP();
+            MakeColorCPp();
+            Csturn = false;
+            Cppturn = true;
         }
         private void MakeColorCSharp()
         {
@@ -125,7 +148,7 @@ namespace ConvertLanguage
             }
             ChangeColor("Program",Color.Orange);
             string a = "\".*\"";
-            ChangeColorPat(a, Color.OrangeRed); // đổi màu các chuỗi
+            ChangeColorPatOutput(a, Color.OrangeRed); // đổi màu các chuỗi
                      
         }
         private void MakeColorCPp()
@@ -143,18 +166,14 @@ namespace ConvertLanguage
             ChangeColor("#include<iostream>", Color.Green);
             ChangeColor("std", Color.Green);
             string a = "\".*\"";
-            ChangeColorPat(a, Color.OrangeRed); // đổi màu các chuỗi
-
-        }
-        private void btnCpp_Click(object sender, EventArgs e)
-        {
-            ConvertCPP();
-            MakeColorCPp();
-        }
+            ChangeColorPatOutput(a, Color.OrangeRed); // đổi màu các chuỗi
+        }       
         private void btnClear_Click(object sender, EventArgs e)
         {
             rtxInput.Clear();
             rtxOutput.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -189,8 +208,16 @@ namespace ConvertLanguage
         }       
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveFile.ShowDialog();          
+            saveFile.Filter = "Text files (*.txt)|*.txt";
+            saveFile.RestoreDirectory = true; 
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter write = new StreamWriter(saveFile.FileName);
+                write.WriteLine(rtxOutput.Text);
+                write.Close();
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
         }       
         private void ConvertCPP()
         {
@@ -213,10 +240,10 @@ namespace ConvertLanguage
             }
             catch(Exception)
             {
-                MessageBox.Show("Chưa có dữ liệu", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có dữ liệu hoặc dữ liệu không hợp lệ!", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void ConvertCSharp()
+        private string ConvertCSharp()
         {
             try // xử lý thay đôit cho form định sẵn
             {
@@ -234,14 +261,14 @@ namespace ConvertLanguage
                 result = Regex.Replace(result, @"intro", getRequestSharp("intro")); // replace khai báo trong hàm main
                 result = Regex.Replace(result, @"nhaphere", getRequestSharp("nhaphere")); // replace nhập 
                 result = Regex.Replace(result, @"post", getFunction()); // replace post 
-                rtxOutput.Text = Regex.Replace(file.Result, @"x:R", result);
+                return result = Regex.Replace(file.Result, @"x:R", result);
             }
             catch (Exception )
             {
-                MessageBox.Show("Chưa có dữ liệu", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);                
+                MessageBox.Show("Chưa có dữ liệu hoặc dữ liệu không hợp lệ!", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
             }
         }
-
         public static string layKhoang(string s)
         {
             int index1 = 0;
@@ -289,210 +316,7 @@ namespace ConvertLanguage
             string result = "for(int " + vari + " = " + min + "; " + vari + " < " + max + "; " + vari + "++)";
 
             return result;
-        }
-
-        private string getFunction(int x = 0)
-        {
-            if(isArray == false)
-            {
-                int k = 3;
-                if (x == 1)
-                    k = 0;
-                string result = "";
-                List<string[]> list = doRegex.doPost(doRegex.cutPost(rtxInput.Text)); // lưu danh sách các cụm kết quả đc cắt
-                foreach (string[] item in list)
-                {
-                    result += "else if(";
-                    for (int i = 1; i < item.Length; i++)
-                    {
-                        result += item[i] + " && ";
-                    }
-                    result = result.Remove(result.Length - 4); // xoá dấu && cuối
-                    result += ")" +
-                        doRegex.tab(x + k) + "{" +
-                        doRegex.tab(x + k + 1) + item[0] + ";" +
-                        doRegex.tab(x + k) + "}" +
-                        doRegex.tab(x + k);
-                }
-                result = result.Remove(0, 5);// xoá else đầu
-                result = Regex.Replace(result, @"FALSE", "false");
-                result = Regex.Replace(result, @"TRUE", "true");
-                return result;
-            }
-            else if (result_type == "bool" && isArray == true)
-            {
-                isArray = false;
-                string result = "";
-                string post = doRegex.cutPost(rtxInput.Text);
-
-                string[] re;
-                re = Post.Tach_PostArray(post);
-
-                string[] loai = new string[2];
-                string Ham = "";
-
-                // Xữ lí dòng 1
-                if (re[0].Contains("VM") || re[0].Contains("TT"))
-                {
-                    result += "\t\t\t" + layKhoang(re[0]) + "\n";
-                    result += "\t\t\t{\n";
-                    result += "\t\t\t\tbool check=false;\n";
-                }
-
-                for (int i = 0; i < re.Length - 1; i++)
-                {
-                    if (re[i].Contains("VM"))
-                    {
-                        loai[i] = "VM";
-                    }
-                    else if (re[i].Contains("TT"))
-                    {
-                        loai[i] = "TT";
-                    }
-                    else
-                    {
-                        loai[i] = "";
-                    }
-                }
-
-                if (loai[0] == "VM")
-                {
-                    if (loai[1] == "VM") // VM-VM
-                    {
-                        re[2] = re[2].Replace('(', '[');
-                        re[2] = re[2].Replace(')', ']');
-                        Ham += "\tif(!" + re[2] + ")\n";
-                        Ham += "\t\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\t\tkq = false;\n"; // chỉnh khi vào code chính
-                        Ham += "\t\t\t\t\t\treturn kq;\n";
-                        Ham += "\t\t\t\t\t}\n";
-                        Ham += "\t\t\t\t}\n";
-
-                        result = "kq = true;\n" + result; // chỉnh khi vào code chính
-                    }
-                    else if (loai[1] == "TT") // VM-TT
-                    {
-                        re[2] = re[2].Replace('(', '[');
-                        re[2] = re[2].Replace(')', ']');
-
-                        Ham += "\tif(" + re[2] + ")\n";
-                        Ham += "\t\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\t\tcheck = true;\n";
-                        Ham += "\t\t\t\t\t}\n\n";
-                        Ham += "\t\t\t\t}\n\n";
-                        Ham += "\t\t\t\tif(check == false)\n";
-                        Ham += "\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\tkq = false;\n"; // chỉnh khi vào code chính
-                        Ham += "\t\t\t\t\treturn kq;\n";
-                        Ham += "\t\t\t\t}";
-
-
-                        result = "kq = true;\n" + result; // chỉnh khi vào code chính
-                    }
-                    else // VM
-                    {
-                        re[1] = re[1].Replace('(', '[');
-                        re[1] = re[1].Replace(')', ']');
-                        Ham += "if(!" + re[1] + ")\n";
-                        Ham += "\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\tkq = false;\n";
-                        Ham += "\t\t\t\t\treturn kq;\n";
-                        Ham += "\t\t\t\t}\n";
-
-                        result = "kq = true;\n" + result; // chỉnh khi vào code chính
-                    }
-                }
-                else if (loai[0] == "TT")
-                {
-                    if (loai[1] == "VM") // TT-VM
-                    {
-                        re[2] = re[2].Replace('(', '[');
-                        re[2] = re[2].Replace(')', ']');
-
-                        result = Regex.Replace(result, @"check=false;", " check=true;");
-
-                        Ham += "\tif(!" + re[2] + ")\n";
-                        Ham += "\t\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\t\tcheck = false;\n";
-                        Ham += "\t\t\t\t\t}\n\n";
-                        Ham += "\t\t\t\t}\n\n";
-                        Ham += "\t\t\t\tif(check == true)\n";
-                        Ham += "\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\tkq = true;\n"; // chỉnh khi vào code chính
-                        Ham += "\t\t\t\t\treturn kq;\n";
-                        Ham += "\t\t\t\t}";
-
-
-                        result = "kq = false;\n" + result; // chỉnh khi vào code chính
-                    }
-                    else if (loai[1] == "TT") // TT-TT
-                    {
-                        re[2] = re[2].Replace('(', '[');
-                        re[2] = re[2].Replace(')', ']');
-                        Ham += "\tif(" + re[2] + ")\n";
-                        Ham += "\t\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\t\tkq = true;\n"; // chỉnh khi vào code chính
-                        Ham += "\t\t\t\t\t\treturn kq;\n";
-                        Ham += "\t\t\t\t\t}\n";
-                        Ham += "\t\t\t\t}\n";
-
-                        result = "kq = false;\n" + result; // chỉnh khi vào code chính
-
-                    }
-                    else // TT
-                    {
-                        re[1] = re[1].Replace('(', '[');
-                        re[1] = re[1].Replace(')', ']');
-                        Ham += "if(" + re[1] + ")\n";
-                        Ham += "\t\t\t\t{\n";
-                        Ham += "\t\t\t\t\tkq = true;\n"; // chỉnh khi vao code chính
-                        Ham += "\t\t\t\t\treturn kq;\n";
-                        Ham += "\t\t\t\t}\n";
-
-                        result = "kq = false;\n" + result; // chỉnh khi vào code chính
-                    }
-                }
-
-                // Xữ lí dòng 2
-
-                if (re[1].Contains("VM") || re[1].Contains("TT"))
-                {
-                    result += "\t\t\t\t" + layKhoang(re[1]) + "\n";
-                    result += "\t\t\t\t{\n";
-                    if (re[2] == "")
-                    {
-                        result += "\t\t\t\t\t\t}\n";
-                    }
-                }
-                else
-                {
-                    result += "\t\t\t\t" + Ham + "\n";
-                }
-
-                // Xữ lí dòng 3 nếu có
-
-                if (re[2] == "")
-                {
-                    result += "\t\t\t}";
-
-                    return result;
-                }
-                else
-                {
-
-                    result += "\t\t\t\t" + Ham + "\n";
-
-                    result += "\t\t\t}";
-
-                }
-
-                return result;
-            }
-            else
-            {
-                return "";
-            }
-        } // dùng cho cả 2 C++ C#
+        }       
         private string getRequestSharp(string s)
         {
             string result = "";
@@ -711,6 +535,7 @@ namespace ConvertLanguage
                                 doRegex.tab(2) + "cout<<\"Nhap phan tu thu \" << i+1;" +
                                 doRegex.tab(2) + "cin >> " +item.Name + "[i];" +
                                 doRegex.tab(1) + "}";
+                        isArray = true;
                         return result;
                     }
                     else // biến thường 
@@ -729,7 +554,220 @@ namespace ConvertLanguage
         {
             return doRegex.doMain(doRegex.cutMain(rtxInput.Text))[0]; 
         }
+        private string getFunction(int x = 0)
+        {
+           
+            if (isArray == false)
+            {
+                int k = 3; // để định dạng tab tuỳ theo form C# or C
+                if (x == 1)
+                    k = 0;
+                string result = "";
+                List<string[]> list = doRegex.doPost(doRegex.cutPost(rtxInput.Text)); // lưu danh sách các cụm kết quả đc cắt
+                foreach (string[] item in list)
+                {
+                    result += "else if(";
+                    for (int i = 1; i < item.Length; i++)
+                    {
+                        result += item[i] + " && ";
+                    }
+                    result = result.Remove(result.Length - 4); // xoá dấu && cuối
+                    result += ")" +
+                        doRegex.tab(x + k) + "{" +
+                        doRegex.tab(x + k + 1) + item[0] + ";" +
+                        doRegex.tab(x + k) + "}" +
+                        doRegex.tab(x + k);
+                }
+                result = result.Remove(0, 5);// xoá else đầu
+                result = Regex.Replace(result, @"FALSE", "false");
+                result = Regex.Replace(result, @"TRUE", "true");
+                return result;
+            }
+            else if (result_type == "bool" && isArray == true)
+            {
+                isArray = false;
+                string result = "";
+                string post = doRegex.cutPost(rtxInput.Text);
 
-      
+                string[] re;
+                re = Post.Tach_PostArray(post);
+
+                string[] loai = new string[2];
+                string Ham = "";
+
+                // Xữ lí dòng 1
+                if (re[0].Contains("VM") || re[0].Contains("TT"))
+                {
+                    result += "\t\t\t" + layKhoang(re[0]) + "\n";
+                    result += "\t\t\t{\n";
+                    result += "\t\t\t\tbool check=false;\n";
+                }
+
+                for (int i = 0; i < re.Length - 1; i++)
+                {
+                    if (re[i].Contains("VM"))
+                    {
+                        loai[i] = "VM";
+                    }
+                    else if (re[i].Contains("TT"))
+                    {
+                        loai[i] = "TT";
+                    }
+                    else
+                    {
+                        loai[i] = "";
+                    }
+                }
+
+                if (loai[0] == "VM")
+                {
+                    if (loai[1] == "VM") // VM-VM
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+                        Ham += "\tif(!(" + re[2] + "))\n";
+                        Ham += "\t\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\t\tkq = false;\n"; // chỉnh khi vào code chính
+                        Ham += "\t\t\t\t\t\treturn kq;\n";
+                        Ham += "\t\t\t\t\t}\n";
+                        Ham += "\t\t\t\t}\n";
+
+                        result = "kq = true;\n" + result; // chỉnh khi vào code chính
+                    }
+                    else if (loai[1] == "TT") // VM-TT
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+
+                        Ham += "\tif(" + re[2] + ")\n";
+                        Ham += "\t\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\t\tcheck = true;\n";
+                        Ham += "\t\t\t\t\t}\n\n";
+                        Ham += "\t\t\t\t}\n\n";
+                        Ham += "\t\t\t\tif(check == false)\n";
+                        Ham += "\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\tkq = false;\n"; // chỉnh khi vào code chính
+                        Ham += "\t\t\t\t\treturn kq;\n";
+                        Ham += "\t\t\t\t}";
+
+
+                        result = "kq = true;\n" + result; // chỉnh khi vào code chính
+                    }
+                    else // VM
+                    {
+                        re[1] = re[1].Replace('(', '[');
+                        re[1] = re[1].Replace(')', ']');
+                        Ham += "if(!(" + re[1] + "))\n";
+                        Ham += "\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\tkq = false;\n";
+                        Ham += "\t\t\t\t\treturn kq;\n";
+                        Ham += "\t\t\t\t}\n";
+
+                        result = "kq = true;\n" + result; // chỉnh khi vào code chính
+                    }
+                }
+                else if (loai[0] == "TT")
+                {
+                    if (loai[1] == "VM") // TT-VM
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+
+                        result = Regex.Replace(result, @"check=false;", " check=true;");
+
+                        Ham += "\tif(!" + re[2] + ")\n";
+                        Ham += "\t\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\t\tcheck = false;\n";
+                        Ham += "\t\t\t\t\t}\n\n";
+                        Ham += "\t\t\t\t}\n\n";
+                        Ham += "\t\t\t\tif(check == true)\n";
+                        Ham += "\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\tkq = true;\n"; // chỉnh khi vào code chính
+                        Ham += "\t\t\t\t\treturn kq;\n";
+                        Ham += "\t\t\t\t}";
+
+
+                        result = "kq = false;\n" + result; // chỉnh khi vào code chính
+                    }
+                    else if (loai[1] == "TT") // TT-TT
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+                        Ham += "\tif(" + re[2] + ")\n";
+                        Ham += "\t\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\t\tkq = true;\n"; // chỉnh khi vào code chính
+                        Ham += "\t\t\t\t\t\treturn kq;\n";
+                        Ham += "\t\t\t\t\t}\n";
+                        Ham += "\t\t\t\t}\n";
+
+                        result = "kq = false;\n" + result; // chỉnh khi vào code chính
+
+                    }
+                    else // TT
+                    {
+                        re[1] = re[1].Replace('(', '[');
+                        re[1] = re[1].Replace(')', ']');
+                        Ham += "if(" + re[1] + ")\n";
+                        Ham += "\t\t\t\t{\n";
+                        Ham += "\t\t\t\t\tkq = true;\n"; // chỉnh khi vao code chính
+                        Ham += "\t\t\t\t\treturn kq;\n";
+                        Ham += "\t\t\t\t}\n";
+
+                        result = "kq = false;\n" + result; // chỉnh khi vào code chính
+                    }
+                }
+
+                // Xữ lí dòng 2
+
+                if (re[1].Contains("VM") || re[1].Contains("TT"))
+                {
+                    result += "\t\t\t\t" + layKhoang(re[1]) + "\n";
+                    result += "\t\t\t\t{\n";
+                    if (re[2] == "")
+                    {
+                        result += "\t\t\t\t\t\t}\n";
+                    }
+                }
+                else
+                {
+                    result += "\t\t\t\t" + Ham + "\n";
+                }
+
+                // Xữ lí dòng 3 nếu có
+
+                if (re[2] == "")
+                {
+                    result += "\t\t\t}";
+
+                    return result;
+                }
+                else
+                {
+
+                    result += "\t\t\t\t" + Ham + "\n";
+
+                    result += "\t\t\t}";
+
+                }
+
+                return result;
+            }
+            else
+            {
+                return "";
+            }
+        } // dùng cho cả 2 C++ C#
+
+        private void fixFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            rtxInput.Text = rtxInput.Text.Trim();
+            string[] tmp = Regex.Split(rtxInput.Text,@".?(?=pre)"); // 0 trc pre 1 tinh tu pre
+            doRegex.clearSpace(ref tmp[0]);
+            doRegex.clearSpace2(ref tmp[1]);
+            rtxInput.Text = tmp[0]+"\n" +tmp[1];
+            string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
+            ChangeColorPatInput(a, Color.Red);
+        }
     }
 }

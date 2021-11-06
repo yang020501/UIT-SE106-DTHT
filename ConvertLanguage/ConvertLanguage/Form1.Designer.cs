@@ -37,6 +37,7 @@ namespace ConvertLanguage
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btniconOpen = new System.Windows.Forms.ToolStripButton();
             this.btniconSave = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +58,7 @@ namespace ConvertLanguage
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
+            this.fixFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -102,7 +104,8 @@ namespace ConvertLanguage
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.fixFormatToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1141, 28);
@@ -114,7 +117,8 @@ namespace ConvertLanguage
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.newToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -122,22 +126,30 @@ namespace ConvertLanguage
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.openToolStripMenuItem.Text = "Open file";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // toolStrip1
             // 
@@ -265,7 +277,6 @@ namespace ConvertLanguage
             this.rtxOutput.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rtxOutput.Location = new System.Drawing.Point(559, 3);
             this.rtxOutput.Name = "rtxOutput";
-            this.rtxOutput.ReadOnly = true;
             this.rtxOutput.Size = new System.Drawing.Size(576, 509);
             this.rtxOutput.TabIndex = 1;
             this.rtxOutput.Text = "";
@@ -364,6 +375,13 @@ namespace ConvertLanguage
             // 
             this.openFile.FileName = "openFileDialog1";
             // 
+            // fixFormatToolStripMenuItem
+            // 
+            this.fixFormatToolStripMenuItem.Name = "fixFormatToolStripMenuItem";
+            this.fixFormatToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.fixFormatToolStripMenuItem.Text = "FixFormat";
+            this.fixFormatToolStripMenuItem.Click += new System.EventHandler(this.fixFormatToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -421,6 +439,8 @@ namespace ConvertLanguage
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fixFormatToolStripMenuItem;
     }
 }
 
