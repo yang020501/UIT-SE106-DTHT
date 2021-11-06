@@ -223,7 +223,7 @@ namespace ConvertLanguage
         }       
         private string ConvertCPP()
         {
-            isArray = false;
+
             try
             {
                 string result;
@@ -246,7 +246,7 @@ namespace ConvertLanguage
                 MessageBox.Show("Chưa có dữ liệu hoặc dữ liệu không hợp lệ!", "Lưu Ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return "";
             }
-        }
+}
         private string ConvertCSharp()
         {
             isArray = false;
@@ -393,7 +393,7 @@ namespace ConvertLanguage
             {
                 string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
                 result = new Var(tmp[tmp.Length - 1]).Name;
-                result_name = new Var(tmp[tmp.Length - 1]).Name;
+               
             }
             else if (s == "intro")
             {
@@ -562,7 +562,8 @@ namespace ConvertLanguage
         private string getFunction(int x = 0)
         {
             string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // lấy biến result của implicit để xét đk
-            result_type = new Var(tmp[tmp.Length - 1]).Type;
+            result_type = new Var(tmp[tmp.Length - 1]).Type; 
+            result_name = new Var(tmp[tmp.Length - 1]).Name;
             if (isArray == false)
             {
                 int k = 3; // để định dạng tab tuỳ theo form C# or C
