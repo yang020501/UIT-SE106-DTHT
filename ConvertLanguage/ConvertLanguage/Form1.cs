@@ -221,6 +221,7 @@ namespace ConvertLanguage
         }       
         private void ConvertCPP()
         {
+            isArray = false;
             try
             {
                 string result;
@@ -245,6 +246,7 @@ namespace ConvertLanguage
         }
         private string ConvertCSharp()
         {
+            isArray = false;
             try // xử lý thay đôit cho form định sẵn
             {
                 string result;
@@ -415,6 +417,7 @@ namespace ConvertLanguage
                 {
                     if (item.Type == "float[]" || item.Type == "int[]") // nếu là mảng 
                     {
+                        isArray = true;
                         result += "Console.Write(\"Moi nhap so phan tu: \");" +
                                 doRegex.tab(3) + "n = " + "type.Parse(Console.ReadLine());" +
                                 doRegex.tab(3) + item.Name + " = new " + doRegex.Arr(item.Type) + "[n];";
@@ -423,7 +426,7 @@ namespace ConvertLanguage
                                 doRegex.tab(4) + "Console.Write(\"Nhap phan tu thu {0}: \",i+1);" +
                                 doRegex.tab(4) + item.Name + "[i] = " + doRegex.Arr(item.Type) + ".Parse(Console.ReadLine());" +
                                 doRegex.tab(3) + "}";
-                        isArray = true;
+                        
                         result = Regex.Replace(result, @"type", new Var(tmp[tmp.Length - 2]).Type);
                         return result;
                     }
@@ -738,7 +741,7 @@ namespace ConvertLanguage
                 if (re[2] == "")
                 {
                     result += "\t\t\t}";
-
+                    result = Regex.Replace(result, @"kq", result_name);
                     return result;
                 }
                 else
@@ -749,7 +752,7 @@ namespace ConvertLanguage
                     result += "\t\t\t}";
 
                 }
-
+                result = Regex.Replace(result, @"kq", result_name);
                 return result;
             }
             else
