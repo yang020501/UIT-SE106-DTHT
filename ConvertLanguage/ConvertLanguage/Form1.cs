@@ -223,7 +223,6 @@ namespace ConvertLanguage
         }       
         private string ConvertCPP()
         {
-
             try
             {
                 string result;
