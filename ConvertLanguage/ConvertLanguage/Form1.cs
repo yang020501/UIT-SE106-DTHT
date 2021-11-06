@@ -561,7 +561,7 @@ namespace ConvertLanguage
         }
         private string getFunction(int x = 0)
         {
-            string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text));
+            string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // lấy biến result của implicit để xét đk
             result_type = new Var(tmp[tmp.Length - 1]).Type;
             if (isArray == false)
             {
