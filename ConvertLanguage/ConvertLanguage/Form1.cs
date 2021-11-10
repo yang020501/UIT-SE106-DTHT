@@ -519,6 +519,56 @@ namespace ConvertLanguage
         {
             return doRegex.doMain(doRegex.cutMain(rtxInput.Text))[0]; 
         }
+
+        public static string layKhoang(string s)
+        {
+            int index1 = 0;
+            int index2 = 0;
+            string vari = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '{')
+                {
+                    index1 = i;
+                }
+
+                if (s[i] == '}')
+                {
+                    index2 = i;
+                }
+
+                if (s[i] == 'T' && s[i + 1] == 'H')
+                {
+                    vari = s.Substring(2, i - 2);
+                }
+
+            }
+
+
+            string min = ""; string max = "";
+            string khoang = s.Substring(index1 + 1, index2 - index1);
+
+            for (int i = 0; i < khoang.Length; i++)
+            {
+                if (khoang[i] == '.' && khoang[i - 1] == '.')
+                {
+                    min = khoang.Substring(0, i - 1);
+                    max = khoang.Substring(i + 1, khoang.Length - i - 2);
+                    break;
+                }
+            }
+            int check;
+            if (int.TryParse(min, out check))
+            {
+                check -= 1;
+                min = check.ToString();
+            }
+
+            string result = "for(int " + vari + " = " + min + "; " + vari + " < " + max + "; " + vari + "++)";
+
+            return result;
+        }
+
         private string getFunction(int x = 0) // dùng cho cả 2 C++ C#
         {
             string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // lấy biến result của implicit để xét đk
@@ -721,57 +771,192 @@ namespace ConvertLanguage
             }
             else
             {
-                return "";
+                string result = "";
+                string post = doRegex.cutPost(rtxInput.Text);
+
+                string[] re;
+                re = Post.Tach_PostArray(post);
+                //re = Tach_PostArray(post);
+
+                string[] loai = new string[2];
+                string Ham = "";
+
+                // Xữ lí dòng 1
+                if (re[0].Contains("VM") || re[0].Contains("TT"))
+                {
+                    result += layKhoang(re[0]) + "\n";
+                    result += "\t\t\t{\n";
+
+                }
+
+                for (int i = 0; i < re.Length - 1; i++)
+                {
+                    if (re[i].Contains("VM"))
+                    {
+                        loai[i] = "VM";
+                    }
+                    else if (re[i].Contains("TT"))
+                    {
+                        loai[i] = "TT";
+                    }
+                    else
+                    {
+                        loai[i] = "";
+                    }
+                }
+
+                if (loai[0] == "VM")
+                {
+                    if (loai[1] == "VM") // VM-VM
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+                        //Ham += "\tif(!(" + re[2] + "))\n";
+                        //Ham += "\t\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\t\tkq = false;\n"; // chỉnh khi vào code chính
+                        //Ham += "\t\t\t\t\t\treturn kq;\n";
+                        //Ham += "\t\t\t\t\t}\n";
+                        //Ham += "\t\t\t\t}\n";
+
+                        //result = "kq = true;\n" + result; // chỉnh khi vào code chính
+                        Ham += "\t" + re[2] + ";\n";
+                        Ham += "\t\t\t\t}\n";
+                    }
+                    else if (loai[1] == "TT") // VM-TT
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+
+                        //Ham += "\tif(" + re[2] + ")\n";
+                        //Ham += "\t\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\t\tcheck = true;\n";
+                        //Ham += "\t\t\t\t\t}\n\n";
+                        //Ham += "\t\t\t\t}\n\n";
+                        //Ham += "\t\t\t\tif(check == false)\n";
+                        //Ham += "\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\tkq = false;\n"; // chỉnh khi vào code chính
+                        //Ham += "\t\t\t\t\treturn kq;\n";
+                        //Ham += "\t\t\t\t}";
+
+
+                        //result = "kq = true;\n" + result; // chỉnh khi vào code chính
+                        Ham += "\t" + re[2] + ";\n";
+                        Ham += "\t\t\t\t}\n";
+                    }
+                    else // VM
+                    {
+                        re[1] = re[1].Replace('(', '[');
+                        re[1] = re[1].Replace(')', ']');
+                        //Ham += "if(!(" + re[1] + "))\n";
+                        //Ham += "\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\tkq = false;\n";
+                        //Ham += "\t\t\t\t\treturn kq;\n";
+                        //Ham += "\t\t\t\t}\n";
+
+                        //result = "kq = true;\n" + result; // chỉnh khi vào code chính
+                        Ham += re[1] + ";\n";
+
+                    }
+                }
+                else if (loai[0] == "TT")
+                {
+                    if (loai[1] == "VM") // TT-VM
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+
+                        //result = Regex.Replace(result, @"check=false;", " check=true;");
+
+                        //Ham += "\tif(!" + re[2] + ")\n";
+                        //Ham += "\t\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\t\tcheck = false;\n";
+                        //Ham += "\t\t\t\t\t}\n\n";
+                        //Ham += "\t\t\t\t}\n\n";
+                        //Ham += "\t\t\t\tif(check == true)\n";
+                        //Ham += "\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\tkq = true;\n"; // chỉnh khi vào code chính
+                        //Ham += "\t\t\t\t\treturn kq;\n";
+                        //Ham += "\t\t\t\t}";
+
+
+                        //result = "kq = false;\n" + result; // chỉnh khi vào code chính
+                        Ham += "\t" + re[2] + ";\n";
+                        Ham += "\t\t\t\t}\n";
+                    }
+                    else if (loai[1] == "TT") // TT-TT
+                    {
+                        re[2] = re[2].Replace('(', '[');
+                        re[2] = re[2].Replace(')', ']');
+                        //Ham += "\tif(" + re[2] + ")\n";
+                        //Ham += "\t\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\t\tkq = true;\n"; // chỉnh khi vào code chính
+                        //Ham += "\t\t\t\t\t\treturn kq;\n";
+                        //Ham += "\t\t\t\t\t}\n";
+                        //Ham += "\t\t\t\t}\n";
+
+                        //result = "kq = false;\n" + result; // chỉnh khi vào code chính
+                        Ham += "\t" + re[2] + ";\n";
+                        Ham += "\t\t\t\t}\n";
+
+                    }
+                    else // TT
+                    {
+                        re[1] = re[1].Replace('(', '[');
+                        re[1] = re[1].Replace(')', ']');
+                        //Ham += "if(" + re[1] + ")\n";
+                        //Ham += "\t\t\t\t{\n";
+                        //Ham += "\t\t\t\t\tkq = true;\n"; // chỉnh khi vao code chính
+                        //Ham += "\t\t\t\t\treturn kq;\n";
+                        //Ham += "\t\t\t\t}\n";
+
+                        //result = "kq = false;\n" + result; // chỉnh khi vào code chính
+                        Ham += re[1] + ";\n";
+
+                    }
+                }
+
+                // Xữ lí dòng 2
+
+                if (re[1].Contains("VM") || re[1].Contains("TT"))
+                {
+                    result += "\t\t\t\t" + layKhoang(re[1]) + "\n";
+                    result += "\t\t\t\t{\n";
+                    if (re[2] == "")
+                    {
+                        result += "\t\t\t\t\t\t}\n";
+                    }
+                }
+                else
+                {
+                    result += "\t\t\t\t" + Ham + "\n";
+                }
+
+                // Xữ lí dòng 3 nếu có
+
+                if (re[2] == "")
+                {
+                    result += "\t\t\t}";
+                    result = Regex.Replace(result, @"kq", result_name);
+                    return result;
+
+
+                }
+                else
+                {
+
+                    result += "\t\t\t\t" + Ham + "\n";
+
+                    result += "\t\t\t}";
+
+                }
+                result = Regex.Replace(result, @"kq", result_name);
+                return result;
+
+
             }
         }
-        public static string layKhoang(string s)
-        {
-            int index1 = 0;
-            int index2 = 0;
-            string vari = "";
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] == '{')
-                {
-                    index1 = i;
-                }
-
-                if (s[i] == '}')
-                {
-                    index2 = i;
-                }
-
-                if (s[i] == 'T' && s[i + 1] == 'H')
-                {
-                    vari = s.Substring(2, i - 2);
-                }
-
-            }
-
-
-            string min = ""; string max = "";
-            string khoang = s.Substring(index1 + 1, index2 - index1);
-
-            for (int i = 0; i < khoang.Length; i++)
-            {
-                if (khoang[i] == '.' && khoang[i - 1] == '.')
-                {
-                    min = khoang.Substring(0, i - 1);
-                    max = khoang.Substring(i + 1, khoang.Length - i - 2);
-                    break;
-                }
-            }
-            int check;
-            if (int.TryParse(min, out check))
-            {
-                check -= 1;
-                min = check.ToString();
-            }
-
-            string result = "for(int " + vari + " = " + min + "; " + vari + " < " + max + "; " + vari + "++)";
-
-            return result;
-        }       
+        
+        
 
     }
 }
