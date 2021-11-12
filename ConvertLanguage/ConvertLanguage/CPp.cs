@@ -12,7 +12,7 @@ namespace ConvertLanguage
         public string Result { get => result; set => result = value; }
         public CPp()
         {
-            result += "#include<iostream>\n\n" +
+            result += "#include<iostream>\n#include<cstring>\n\n" +
                   "using namespace std;\n\nx:R";
         }
         public string formNhap()
@@ -38,7 +38,7 @@ namespace ConvertLanguage
             string result = "";
             if (txt == "")
             {
-                result = "public int Check_name(type)" +
+                result = "int Check_name(type)" +
                 doRegex.tab(0) + "{" +
                 doRegex.tab(1) + "return 1;" +
                 doRegex.tab(0) + "}" +
@@ -84,6 +84,8 @@ namespace ConvertLanguage
               doRegex.tab(1) + "}" +
               doRegex.tab(1) + "else" +
               doRegex.tab(2) + "cout << \"Du lieu sai\";" +
+              doRegex.tab(1) + "cout<<endl;" +
+              doRegex.tab(1) + "system(\"pause\");" +
               doRegex.tab(1) + "return 0;" +
               doRegex.tab(0) + "}" +
               doRegex.tab(0);

@@ -83,10 +83,33 @@ namespace ConvertLanguage
         }
         private void btniconBuild_Click(object sender, EventArgs e)
         {
-         
-              Build(rtxOutput.Text);            
+            if (Csturn)
+                BuildCs(rtxOutput.Text);
+            else
+            {
+                BuildCpp(rtxOutput.Text);
+                
+            }
         }
-        private void Build(string code)// just C# 
+        private void BuildCpp(string code)//justC++
+        {
+
+            if (File.Exists(@"..\Debug\File.cpp"))
+            {
+                if (File.Exists(@"..\Debug\File.exe"))
+                    File.Delete(@"..\Debug\File.exe");
+                File.Delete(@"..\Debug\File.cpp");
+            }
+            StreamWriter write = new StreamWriter("File.cpp");
+            write.WriteLine(code);
+            write.Close();
+            string cmd = @"/c g++ File.cpp -o File";
+            Process.Start("CMD", cmd).WaitForExit();
+
+            Process.Start("File.exe");
+
+        }    
+        private void BuildCs(string code)// just C# 
         {
             textBox3.Clear();
             CSharpCodeProvider codeProvider = new CSharpCodeProvider();
@@ -431,7 +454,9 @@ namespace ConvertLanguage
                 }
                 foreach (Var item in Variables)
                 {
-                    result += item.Type + " " + item.Name + ",";
+                    if (item.Type == "float[]" || item.Type == "int[]")
+                        result += doRegex.Arr(item.Type) + " " + item.Name + "[],";
+                    else result += item.Type + " " + item.Name + ",";
                 }
                 result = result.Remove(result.Length - 1); // xoá dấu phẩy cuối
             }
@@ -493,10 +518,10 @@ namespace ConvertLanguage
                     {
                         result += "cout << \"Moi nhap so phan tu: \";" +
                                 doRegex.tab(1) + "cin >> n;" +
-                                doRegex.tab(1) + doRegex.Arr(item.Type) + " "+ item.Name+"[]"+" =  " +item.Value;
+                                doRegex.tab(1) + item.Name+" = new " +doRegex.Arr(item.Type)+"[n];";
                         result += doRegex.tab(1) + "for (int i = 0; i < n; i++)" +
                                 doRegex.tab(1) + "{" +
-                                doRegex.tab(2) + "cout<<\"Nhap phan tu thu \" << i+1;" +
+                                doRegex.tab(2) + "cout<<\"Nhap phan tu thu \" << i+1 << \": \";" +
                                 doRegex.tab(2) + "cin >> " +item.Name + "[i];" +
                                 doRegex.tab(1) + "}";
                         isArray = true;
@@ -504,7 +529,7 @@ namespace ConvertLanguage
                     }
                     else // biến thường 
                     {
-                        result += doRegex.tab(1) + "cout << \"Moi nhap \" << " + item.Name + ";" +
+                        result += doRegex.tab(1) + "cout << \"Moi nhap "+ item.Name +" \" ;"+
                                  doRegex.tab(1) + "cin >> " + item.Name + ";";
 
                     }
