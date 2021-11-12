@@ -38,8 +38,10 @@ namespace ConvertLanguage
             rtxInput.Text = tmp[0] + "\n" + tmp[1];
             string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
             ChangeColorPatInput(a, Color.Red);
+            ChangeColorPatInput(@"(pre)", Color.Blue);
+            ChangeColorPatInput(@"(post)", Color.Blue);
         }
-        private void ChangeColor(string find,Color color) // đổi màu từ được truyền 
+        private void ChangeColor(string find,Color color) // đổi màu từ được truyền cho output
         {            
             if (rtxOutput.Text.Contains(find))
             {
@@ -209,6 +211,8 @@ namespace ConvertLanguage
                 read.Close();
                 string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
                 ChangeColorPatInput(a,Color.Red);
+                ChangeColorPatInput(@"(pre)", Color.Blue);
+                ChangeColorPatInput(@"(post)", Color.Blue);
             }
 
         }       
@@ -514,7 +518,6 @@ namespace ConvertLanguage
         {
             return doRegex.doMain(doRegex.cutMain(rtxInput.Text))[0]; 
         }
-
         public static string layKhoang(string s)
         {
             int index1 = 0;
@@ -563,7 +566,6 @@ namespace ConvertLanguage
 
             return result;
         }
-
         private string getFunction(int x = 0) // dùng cho cả 2 C++ C#
         {
             string[] tmp = doRegex.doMain(doRegex.cutMain(rtxInput.Text)); // lấy biến result của implicit để xét đk
