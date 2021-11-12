@@ -641,6 +641,8 @@ namespace ConvertLanguage
                     result += "\t\t\t\tbool check=false;\n";
                 }
 
+                result = Regex.Replace(result, @"<", "<=");
+
                 for (int i = 0; i < re.Length - 1; i++)
                 {
                     if (re[i].Contains("VM"))
@@ -809,6 +811,7 @@ namespace ConvertLanguage
                     result += "\t\t\t{\n";
 
                 }
+                result = Regex.Replace(result, @"<", "<=");
 
                 for (int i = 0; i < re.Length - 1; i++)
                 {
