@@ -85,25 +85,23 @@ namespace ConvertLanguage
         {
             if (Csturn)
                 BuildCs(rtxOutput.Text);
-            else
-            {
-                BuildCpp(rtxOutput.Text);
-                
-            }
+            else          
+                BuildCpp(rtxOutput.Text);                
+
         }
         private void BuildCpp(string code)//justC++
         {
 
-            if (File.Exists(@"..\Debug\File.cpp"))
+            if (File.Exists(@"..\Debug\File.cpp")) //xóa file.cpp và exe trc đó
             {
                 if (File.Exists(@"..\Debug\File.exe"))
                     File.Delete(@"..\Debug\File.exe");
                 File.Delete(@"..\Debug\File.cpp");
-            }
-            StreamWriter write = new StreamWriter("File.cpp");
+            } 
+            StreamWriter write = new StreamWriter("File.cpp"); // ghi tạo file.cpp
             write.WriteLine(code);
             write.Close();
-            string cmd = @"/c g++ File.cpp -o File";
+            string cmd = @"/c g++ File.cpp -o File"; // biên dịch 
             Process.Start("CMD", cmd).WaitForExit();
 
             Process.Start("File.exe");
@@ -195,6 +193,8 @@ namespace ConvertLanguage
                 ChangeColor(pink[i], Color.Violet);
             }            
             ChangeColor("#include<iostream>", Color.Green);
+            ChangeColor("#include<cstring>", Color.Green);
+            ChangeColor("#include<iomanip>", Color.Green);
             ChangeColor("std", Color.Green);
             string a = "\".*\"";
             ChangeColorPatOutput(a, Color.OrangeRed); // đổi màu các chuỗi
@@ -441,7 +441,7 @@ namespace ConvertLanguage
                 {
                     if (item.Type == "float[]" || item.Type == "int[]")
                         result += doRegex.Arr(item.Type) +" "+ item.Name + "[],";
-                    else result += item.Type + "  &" + item.Name + ",";
+                    else result += item.Type + "&  " + item.Name + ",";
                 }
                 result = result.Remove(result.Length - 1); // xoá dấu phẩy cuối
             }
@@ -499,7 +499,7 @@ namespace ConvertLanguage
                 foreach (Var item in Variables)
                 {
                     if (item.Type == "float[]" || item.Type == "int[]")
-                        result += doRegex.Arr(item.Type) + " " + item.Name + "[0];"+ doRegex.tab(1);  // mặc định lúc khởi tạo mảng int hay flaot đều 0 phần tử
+                        result += doRegex.Arr(item.Type) + " " + item.Name + "[1000];"+ doRegex.tab(1);  // mặc định lúc khởi tạo mảng int hay flaot đều 0 phần tử
                     else
                         result += item.Type + " " + item.Name + " = " + item.Value + ";" + doRegex.tab(1);
                 }
@@ -517,8 +517,7 @@ namespace ConvertLanguage
                     if (item.Type == "float[]" || item.Type == "int[]") // nếu là mảng 
                     {
                         result += "cout << \"Moi nhap so phan tu: \";" +
-                                doRegex.tab(1) + "cin >> n;" +
-                                doRegex.tab(1) + item.Name+" = new " +doRegex.Arr(item.Type)+"[n];";
+                                doRegex.tab(1) + "cin >> n;";
                         result += doRegex.tab(1) + "for (int i = 0; i < n; i++)" +
                                 doRegex.tab(1) + "{" +
                                 doRegex.tab(2) + "cout<<\"Nhap phan tu thu \" << i+1 << \": \";" +

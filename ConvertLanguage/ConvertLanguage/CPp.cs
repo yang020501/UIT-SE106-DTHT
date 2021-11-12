@@ -12,7 +12,7 @@ namespace ConvertLanguage
         public string Result { get => result; set => result = value; }
         public CPp()
         {
-            result += "#include<iostream>\n#include<cstring>\n\n" +
+            result += "#include<iostream>\n#include<cstring>\n#include<iomanip>\n\n" +
                   "using namespace std;\n\nx:R";
         }
         public string formNhap()
@@ -28,7 +28,7 @@ namespace ConvertLanguage
         {
             string result = "void Xuat_name(resultType resultName)" +
                 doRegex.tab(0) + "{" +
-                doRegex.tab(1) + "cout << \"Ket qua la: \" << resultName;" +
+                doRegex.tab(1) + "cout << \"Ket qua la: \" << setprecision(2) << resultName;" +
                 doRegex.tab(0) + "}" +
                 doRegex.tab(0);
             return result;

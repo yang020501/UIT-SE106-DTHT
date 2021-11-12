@@ -20,9 +20,13 @@ namespace ConvertLanguage
             string[] a = Regex.Split(s, @":"); // s có dạng là chuỗi biến x:R,x:R thì hàm sẽ cắt và trả về a là  x R
             name = a[0];
             type = doRegex.replaceType(a[1]); // lấy về chuỗi type đúng
-            if(type == "int" || type == "float")
+            if(type == "int" )
             {
                 value = "0";
+            }    
+            else if(type == "float")
+            {
+                value = "0.0";
             }    
             else if(type == "string")
             {
