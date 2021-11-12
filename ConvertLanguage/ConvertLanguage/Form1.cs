@@ -81,14 +81,8 @@ namespace ConvertLanguage
         }
         private void btniconBuild_Click(object sender, EventArgs e)
         {
-            if (Cppturn == true)
-            {
-                string temp;
-                temp = ConvertCSharp();
-                Build(temp);
-            }
-            else
-                Build(rtxOutput.Text);            
+         
+              Build(rtxOutput.Text);            
         }
         private void Build(string code)// just C# 
         {
@@ -121,6 +115,7 @@ namespace ConvertLanguage
                 textBox3.Clear();
                 Process.Start(Output);
             }
+
         } 
         private void btnCsharp_Click(object sender, EventArgs e)
         {

@@ -72,7 +72,7 @@ namespace ConvertLanguage
         }
         public string formMain()
         {
-            string result = "int Main()" +
+            string result = "int main()" +
               doRegex.tab(0) + "{" +
               doRegex.tab(1) + "intro" +
               doRegex.tab(1) + "resultType resultName;" +
