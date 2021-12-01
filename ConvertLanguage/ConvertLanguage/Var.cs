@@ -26,7 +26,7 @@ namespace ConvertLanguage
             }    
             else if(type == "float")
             {
-                value = "0.0";
+                value = "0";
             }    
             else if(type == "string")
             {
