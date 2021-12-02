@@ -32,10 +32,15 @@ namespace ConvertLanguage
         {
 
             rtxInput.Text = rtxInput.Text.Trim();
-            string[] tmp = Regex.Split(rtxInput.Text, @".?(?=pre)"); // 0 trc pre 1 tinh tu pre
-            doRegex.clearSpace(ref tmp[0]);
-            doRegex.clearSpace2(ref tmp[1]);
-            rtxInput.Text = tmp[0] + "\n" + tmp[1];
+            string[] tmp = Regex.Split(rtxInput.Text, @".?(?=pre)"); // 0 trc pre 1 tinh tu pre          
+            try 
+            {
+                doRegex.clearSpace(ref tmp[0]);
+                doRegex.clearSpace2(ref tmp[1]);
+                rtxInput.Text = tmp[0] + "\n" + tmp[1];
+            }
+            catch { MessageBox.Show("Hãy thêm input nào", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information); }           
+           
             string a = @":(\w*\*?)"; // pattern biến trong implicit khai báo
             ChangeColorPatInput(a, Color.Red);
             ChangeColorPatInput(@"(pre)", Color.Blue);
